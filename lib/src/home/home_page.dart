@@ -14,6 +14,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
+        physics: const BouncingScrollPhysics(),
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 25, top: 25),
@@ -94,6 +95,91 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 21),
+            height: 210,
+            child: ListView.builder(
+                padding: const EdgeInsets.only(left: 25, right: 6),
+                itemCount: 5,
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: const EdgeInsets.only(right: 19),
+                    height: 210,
+                    width: 153,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors.laranja,
+                    ),
+                  );
+                }),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 25, top: 25),
+            child: Text(
+              'Popular',
+              style: AppTextStyles.text22boldW600,
+            ),
+          ),
+          ListView.builder(
+            itemCount: 5,
+            padding: const EdgeInsets.only(top: 25, right: 25, left: 25),
+            physics: const BouncingScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  print('teste');
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 19),
+                  height: 81,
+                  width: MediaQuery.of(context).size.width - 50,
+                  //color: AppColors.cinzaForte,
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 81,
+                        width: 62,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.cinzaFraco,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 21,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Título Grande',
+                            style: AppTextStyles.text22boldW600,
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            'Subtitulo menor',
+                            style: AppTextStyles.text14boldW600preto,
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            'R\$ 50,00',
+                            style: AppTextStyles.text14boldW600preto,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),
