@@ -6,6 +6,7 @@ class ProductEntity {
   final double value;
   final double discount;
   final int priority;
+  final int votes;
   final bool promo;
 
   const ProductEntity({
@@ -16,6 +17,7 @@ class ProductEntity {
     required this.value,
     required this.discount,
     required this.priority,
+    required this.votes,
     required this.promo,
   });
 }
