@@ -18,4 +18,9 @@ class AppTextStyles {
     fontSize: 22,
     fontWeight: FontWeight.w600,
   );
+  static final TextStyle text32boldW600 = GoogleFonts.openSans(
+    color: AppColors.preto,
+    fontSize: 22,
+    fontWeight: FontWeight.w600,
+  );
 }
