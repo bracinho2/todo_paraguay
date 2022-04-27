@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:todo_paraguay/shared/themes/colors.dart';
 import 'package:todo_paraguay/shared/themes/text_styles.dart';
+import 'package:todo_paraguay/src/product/domain/entities/product_entity.dart';
+import 'package:todo_paraguay/src/product/domain/usecases/get_product_usecase.dart';
+import 'package:todo_paraguay/src/product/external/remote/remote_datasource_impl.dart';
+import 'package:todo_paraguay/src/product/infra/repositories/get_product_impl.dart';
 
 import '../detail/detail_page.dart';
 
@@ -11,7 +15,23 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+final usecase =
+    GetProductsUsecase(ProductRepositoryImpl(ProductDatasourceImpl()));
+
 class _HomePageState extends State<HomePage> {
+  List<ProductEntity> list = [];
+
+  void popular() async {
+    list = await usecase.call();
+    print(list);
+  }
+
+  @override
+  void initState() {
+    popular();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

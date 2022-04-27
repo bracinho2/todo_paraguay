@@ -14,7 +14,18 @@ class ProductDatasourceImpl implements IProductDatasource {
         "discount": "0",
         "priority": "0",
         "votes": "7",
-        "promo": "false"
+        "promo": false
+      },
+      {
+        "id": "1",
+        "name": "Radio",
+        "description": "Radio VHF",
+        "store": "America",
+        "value": "250.0",
+        "discount": "0",
+        "priority": "0",
+        "votes": "7",
+        "promo": false
       },
     ];
 

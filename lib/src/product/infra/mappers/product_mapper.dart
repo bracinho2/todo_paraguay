@@ -40,11 +40,11 @@ class ProductMapper extends ProductEntity {
       name: map['name'] ?? '',
       description: map['description'] ?? '',
       store: map['store'] ?? '',
-      value: map['value'] ?? '',
-      discount: map['discount'] ?? '',
-      priority: map['priority'] ?? '',
-      votes: map['votes'] ?? '',
-      promo: map['promo'] ?? '',
+      value: map['value'] != null ? double.parse(map['value']) : 0.0,
+      discount: map['discount'] != null ? double.parse(map['discount']) : 0.0,
+      priority: map['priority'] != null ? int.parse(map['priority']) : 0,
+      votes: map['votes'] != null ? int.parse(map['votes']) : 0,
+      promo: map['promo'] ?? false,
     );
   }
 

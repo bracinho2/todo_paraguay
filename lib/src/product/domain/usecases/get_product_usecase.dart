@@ -5,10 +5,10 @@ abstract class IGetProductUsecase {
   Future<List<ProductEntity>> call();
 }
 
-class GetProducts implements IGetProductUsecase {
+class GetProductsUsecase implements IGetProductUsecase {
   final IProductRepository _iProductRepository;
 
-  GetProducts(this._iProductRepository);
+  GetProductsUsecase(this._iProductRepository);
   @override
   Future<List<ProductEntity>> call() {
     return _iProductRepository.getProducts();
