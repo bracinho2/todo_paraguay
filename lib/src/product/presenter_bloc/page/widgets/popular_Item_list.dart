@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo_paraguay/shared/themes/colors.dart';
 import 'package:todo_paraguay/shared/themes/text_styles.dart';
 import 'package:todo_paraguay/src/home/detail/detail_page.dart';
 

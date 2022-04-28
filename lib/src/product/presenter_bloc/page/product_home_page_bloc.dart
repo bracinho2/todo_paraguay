@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_paraguay/shared/themes/colors.dart';
 import 'package:todo_paraguay/shared/themes/text_styles.dart';
-import 'package:todo_paraguay/src/home/detail/detail_page.dart';
 import 'package:todo_paraguay/src/product/presenter_bloc/bloc/events/product_events.dart';
 
 import 'package:todo_paraguay/src/product/presenter_bloc/bloc/product_bloc.dart';
@@ -20,12 +19,17 @@ class ProductHomePageBloc extends StatefulWidget {
   State<ProductHomePageBloc> createState() => _ProductHomePageBlocState();
 }
 
-class _ProductHomePageBlocState extends State<ProductHomePageBloc> {
+class _ProductHomePageBlocState extends State<ProductHomePageBloc>
+    with SingleTickerProviderStateMixin {
   late final ProductBloc bloc;
+
+  TabController? tabController;
 
   @override
   void initState() {
     super.initState();
+
+    tabController = TabController(length: 3, vsync: this);
     bloc = Provider.of<ProductBloc>(context, listen: false);
 
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
@@ -61,7 +65,7 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc> {
           }
           if (state is SuccessProductState) {
             return DefaultTabController(
-              length: state.products.length,
+              length: 3,
               child: Scaffold(
                 body: SafeArea(
                   child: ListView(
@@ -69,27 +73,110 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc> {
                     children: [
                       const AppBarWidget(),
                       const SearchBarWidget(),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 25, top: 25),
-                        child: Text(
-                          'Novos',
-                          style: AppTextStyles.text22boldW600,
+                      Container(
+                        height: 25,
+                        margin: const EdgeInsets.only(top: 30),
+                        padding: const EdgeInsets.only(left: 25),
+                        child: DefaultTabController(
+                          length: 3,
+                          child: TabBar(
+                            controller: tabController,
+                            labelPadding: const EdgeInsets.all(0),
+                            indicatorPadding: const EdgeInsets.all(0),
+                            isScrollable: true,
+                            labelColor: AppColors.preto,
+                            labelStyle: AppTextStyles.text14boldW600preto,
+                            unselectedLabelStyle:
+                                AppTextStyles.text14boldW600cinza,
+                            indicatorColor: Colors.transparent,
+                            tabs: [
+                              Tab(
+                                child: Container(
+                                  margin: const EdgeInsets.only(right: 23),
+                                  child: const Text('Nuevo'),
+                                ),
+                              ),
+                              Tab(
+                                child: Container(
+                                  margin: const EdgeInsets.only(right: 23),
+                                  child: const Text('Popular'),
+                                ),
+                              ),
+                              Tab(
+                                child: Container(
+                                  margin: const EdgeInsets.only(right: 23),
+                                  child: const Text('Usados'),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.only(top: 21),
+                        padding: const EdgeInsets.only(left: 20),
                         height: 210,
-                        child: ListView.builder(
-                          padding: const EdgeInsets.only(left: 25, right: 6),
-                          itemCount: 3,
-                          physics: const BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            final product = state.products[index];
-                            return NewItemList(
-                              title: product.name,
-                            );
-                          },
+                        width: double.maxFinite,
+                        child: TabBarView(
+                          controller: tabController,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(top: 21),
+                              height: 210,
+                              child: ListView.builder(
+                                padding:
+                                    const EdgeInsets.only(left: 25, right: 6),
+                                itemCount: state.products.length,
+                                physics: const BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  final product = state.products[index];
+                                  return NewItemList(title: product.name);
+                                },
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(top: 21),
+                              height: 210,
+                              child: ListView.builder(
+                                  padding:
+                                      const EdgeInsets.only(left: 25, right: 6),
+                                  itemCount: state.products.length,
+                                  physics: const BouncingScrollPhysics(),
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      margin: const EdgeInsets.only(right: 19),
+                                      height: 210,
+                                      width: 153,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: AppColors.cinzaFraco,
+                                      ),
+                                    );
+                                  }),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(top: 21),
+                              height: 210,
+                              child: ListView.builder(
+                                  padding:
+                                      const EdgeInsets.only(left: 25, right: 6),
+                                  itemCount: state.products.length,
+                                  physics: const BouncingScrollPhysics(),
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      margin: const EdgeInsets.only(right: 19),
+                                      height: 210,
+                                      width: 153,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: AppColors.cinzaForte,
+                                      ),
+                                    );
+                                  }),
+                            ),
+                          ],
                         ),
                       ),
                       Padding(
