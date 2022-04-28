@@ -7,7 +7,7 @@ class ProductDatasourceImpl implements IProductDatasource {
     final mockvalues = [
       {
         "id": "1",
-        "name": "Radio",
+        "name": "Yaesu FT 2900",
         "description": "Radio VHF",
         "store": "America",
         "value": "250",
@@ -18,10 +18,21 @@ class ProductDatasourceImpl implements IProductDatasource {
       },
       {
         "id": "1",
-        "name": "Radio",
+        "name": "Icom IC 2200",
         "description": "Radio VHF",
         "store": "America",
-        "value": "250.0",
+        "value": "230.0",
+        "discount": "0",
+        "priority": "0",
+        "votes": "7",
+        "promo": false
+      },
+      {
+        "id": "1",
+        "name": "Kenwood TK 210",
+        "description": "Radio VHF",
+        "store": "America",
+        "value": "185.0",
         "discount": "0",
         "priority": "0",
         "votes": "7",

@@ -11,12 +11,15 @@ class ProductRepositoryImpl implements IProductRepository {
   Future<List<ProductEntity>> getProducts() async {
     final response = await _iProductDatasource.getProducts();
 
-    final List<ProductEntity> list = [];
+    //response.map(ProductMapper.fromMap);
 
-    for (var object in response) {
-      final category = ProductMapper.fromMap(object);
-      list.add(category);
-    }
-    return list;
+    // final List<ProductEntity> list = [];
+
+    // for (var object in response) {
+    //   final product = ProductMapper.fromMap(object);
+    //   list.add(product);
+    // }
+
+    return response.map(ProductMapper.fromMap).toList();
   }
 }
