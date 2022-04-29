@@ -14,7 +14,10 @@ class ErrorProductState extends ProductStateBloc {
 }
 
 //search state
-class SearchProductState extends ProductStateBloc {}
+class SearchProductState extends ProductStateBloc {
+  final List<ProductEntity> products;
+  const SearchProductState(this.products);
+}
 
 class SuccessProductState extends ProductStateBloc {
   final List<ProductEntity> products;

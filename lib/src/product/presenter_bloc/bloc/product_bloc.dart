@@ -11,9 +11,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductStateBloc> {
     on<ClearProductEvent>((event, emit) {
       emit(const SuccessProductState([]));
     });
-    on<SearchProductEvent>((event, emit) {
-      emit(SearchProductState());
-    });
+    on<SearchProductEvent>(_fetchFilteredProducts);
   }
 
   Future<void> _fetchProducts(
@@ -22,6 +20,22 @@ class ProductBloc extends Bloc<ProductEvent, ProductStateBloc> {
     try {
       final products = await _iGetProductUsecase.call();
       emit(SuccessProductState(products));
+    } catch (e) {
+      emit(ErrorProductState(e.toString()));
+    }
+  }
+
+  Future<void> _fetchFilteredProducts(
+      SearchProductEvent event, Emitter<ProductStateBloc> emit) async {
+    emit(LoadingProductState());
+    try {
+      final products = await _iGetProductUsecase.call();
+      final filteredList = products
+          .where((element) =>
+              element.name.toLowerCase().contains(event.query.toLowerCase()))
+          .toList();
+
+      emit(SearchProductState(filteredList));
     } catch (e) {
       emit(ErrorProductState(e.toString()));
     }

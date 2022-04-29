@@ -63,10 +63,45 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
               child: Text(state.message),
             );
           }
+
+          if (state is SearchProductState) {
+            return Scaffold(
+              body: SafeArea(
+                  child: ListView(
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  const AppBarWidget(),
+                  SearchBarWidget(
+                    onChanged: (value) {
+                      if (value.isEmpty) {}
+                      bloc.add(SearchProductEvent(value));
+                    },
+                  ),
+                  ListView.builder(
+                    itemCount: state.products.length,
+                    padding:
+                        const EdgeInsets.only(top: 25, right: 25, left: 25),
+                    physics: const BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      final product = state.products[index];
+                      return PopularItemList(
+                        name: product.name,
+                        description: product.description,
+                        price: product.price,
+                        image: product.image,
+                      );
+                    },
+                  ),
+                ],
+              )),
+            );
+          }
           if (state is SuccessProductState) {
             return DefaultTabController(
               length: 3,
               child: Scaffold(
+                resizeToAvoidBottomInset: true,
                 body: SafeArea(
                   child: ListView(
                     physics: const BouncingScrollPhysics(),
@@ -74,7 +109,7 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                       const AppBarWidget(),
                       SearchBarWidget(
                         onChanged: (value) {
-                          print(value);
+                          bloc.add(SearchProductEvent(value));
                         },
                       ),
                       Container(

@@ -7,8 +7,9 @@ class SearchProductEvent extends ProductEvent {
   final String query;
 
   SearchProductEvent(this.query);
+
   @override
-  String toString() => 'Searching for... { query: $query }';
+  String toString() => 'SearchProductEvent { query: $query }';
 }
 
 class ClearProductEvent extends ProductEvent {}

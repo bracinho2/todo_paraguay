@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:todo_paraguay/shared/themes/text_styles.dart';
-import 'package:todo_paraguay/src/home/detail/detail_page.dart';
-import 'package:todo_paraguay/src/product/domain/entities/product_entity.dart';
 import 'package:todo_paraguay/src/product/presenter_bloc/page/product_detail_page_bloc.dart';
 
 class PopularItemList extends StatelessWidget {
