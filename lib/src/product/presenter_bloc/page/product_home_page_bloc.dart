@@ -24,6 +24,7 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
   late final ProductBloc bloc;
 
   TabController? tabController;
+  TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
@@ -50,7 +51,9 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
         builder: (context, state) {
           if (state is EmptyProductState) {
             return const Center(
-              child: Text('Não Carregou!'),
+              child: Center(
+                child: LinearProgressIndicator(),
+              ),
             );
           }
           if (state is LoadingProductState) {
@@ -72,9 +75,13 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                 children: [
                   const AppBarWidget(),
                   SearchBarWidget(
+                    controller: searchController,
                     onChanged: (value) {
-                      if (value.isEmpty) {}
-                      bloc.add(SearchProductEvent(value));
+                      if (value.isEmpty) {
+                        bloc.add(FetchProductEvent());
+                      } else {
+                        bloc.add(SearchProductEvent(searchController.text));
+                      }
                     },
                   ),
                   ListView.builder(
@@ -108,8 +115,13 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                     children: [
                       const AppBarWidget(),
                       SearchBarWidget(
+                        controller: searchController,
                         onChanged: (value) {
-                          bloc.add(SearchProductEvent(value));
+                          if (value.isEmpty) {
+                            bloc.add(FetchProductEvent());
+                          } else {
+                            bloc.add(SearchProductEvent(searchController.text));
+                          }
                         },
                       ),
                       Container(
@@ -188,14 +200,12 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                                   physics: const BouncingScrollPhysics(),
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, index) {
-                                    return Container(
-                                      margin: const EdgeInsets.only(right: 19),
-                                      height: 210,
-                                      width: 153,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: AppColors.cinzaFraco,
-                                      ),
+                                    final product = state.products[index];
+                                    return NewItemList(
+                                      name: product.name,
+                                      description: product.description,
+                                      price: product.price,
+                                      image: product.image,
                                     );
                                   }),
                             ),
@@ -209,14 +219,12 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                                   physics: const BouncingScrollPhysics(),
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, index) {
-                                    return Container(
-                                      margin: const EdgeInsets.only(right: 19),
-                                      height: 210,
-                                      width: 153,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: AppColors.cinzaForte,
-                                      ),
+                                    final product = state.products[index];
+                                    return NewItemList(
+                                      name: product.name,
+                                      description: product.description,
+                                      price: product.price,
+                                      image: product.image,
                                     );
                                   }),
                             ),

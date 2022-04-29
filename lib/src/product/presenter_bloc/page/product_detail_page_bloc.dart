@@ -42,9 +42,7 @@ class ProductDetailPageBloc extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius:
                                 BorderRadius.circular(10), // Image border
-                            child: Image.network(
-                                'https://img.olx.com.br/images/88/883292515784593.jpg',
-                                fit: BoxFit.cover),
+                            child: Image.network(image, fit: BoxFit.cover),
                           ),
                         ),
                       ),

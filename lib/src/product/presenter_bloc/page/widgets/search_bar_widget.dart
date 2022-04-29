@@ -5,9 +5,11 @@ import 'package:todo_paraguay/shared/themes/text_styles.dart';
 
 class SearchBarWidget extends StatelessWidget {
   final void Function(String value)? onChanged;
+  final TextEditingController? controller;
   const SearchBarWidget({
     Key? key,
     this.onChanged,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -21,8 +23,9 @@ class SearchBarWidget extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          TextField(
+          TextFormField(
             onChanged: onChanged,
+            controller: controller,
             cursorColor: Colors.amber,
             style: AppTextStyles.text14boldW600preto,
             decoration: InputDecoration(
