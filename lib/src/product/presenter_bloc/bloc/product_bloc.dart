@@ -11,6 +11,9 @@ class ProductBloc extends Bloc<ProductEvent, ProductStateBloc> {
     on<ClearProductEvent>((event, emit) {
       emit(const SuccessProductState([]));
     });
+    on<SearchProductEvent>((event, emit) {
+      emit(SearchProductState());
+    });
   }
 
   Future<void> _fetchProducts(

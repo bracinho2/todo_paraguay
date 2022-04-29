@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+
 import 'package:todo_paraguay/shared/themes/colors.dart';
 import 'package:todo_paraguay/shared/themes/text_styles.dart';
 
 class SearchBarWidget extends StatelessWidget {
-  const SearchBarWidget({Key? key}) : super(key: key);
+  final void Function(String value)? onChanged;
+  const SearchBarWidget({
+    Key? key,
+    this.onChanged,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +22,9 @@ class SearchBarWidget extends StatelessWidget {
       child: Stack(
         children: [
           TextField(
-            style: AppTextStyles.text14boldW600cinza,
+            onChanged: onChanged,
+            cursorColor: Colors.amber,
+            style: AppTextStyles.text14boldW600preto,
             decoration: InputDecoration(
               contentPadding:
                   const EdgeInsets.only(left: 19, right: 50, bottom: 8),
@@ -26,10 +33,13 @@ class SearchBarWidget extends StatelessWidget {
               hintStyle: AppTextStyles.text14boldW600preto,
             ),
           ),
-          const Positioned(
-            right: 0,
+          Positioned(
+            right: 10,
             bottom: 6,
-            child: Icon(Icons.search),
+            child: Icon(
+              Icons.search,
+              color: AppColors.cinzaForte,
+            ),
           )
         ],
       ),

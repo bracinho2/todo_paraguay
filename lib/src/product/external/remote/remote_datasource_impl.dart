@@ -10,10 +10,11 @@ class ProductDatasourceImpl implements IProductDatasource {
         "name": "Yaesu FT 2900",
         "description": "Radio VHF",
         "store": "America",
-        "value": "250",
+        "price": "250",
         "discount": "0",
         "priority": "0",
         "votes": "7",
+        "image": "https://img.olx.com.br/images/88/883292515784593.jpg",
         "promo": false
       },
       {
@@ -21,10 +22,11 @@ class ProductDatasourceImpl implements IProductDatasource {
         "name": "Icom IC 2200",
         "description": "Radio VHF",
         "store": "America",
-        "value": "230.0",
+        "price": "230.0",
         "discount": "0",
         "priority": "0",
         "votes": "7",
+        "image": "https://img.olx.com.br/images/88/883292515784593.jpg",
         "promo": false
       },
       {
@@ -36,6 +38,7 @@ class ProductDatasourceImpl implements IProductDatasource {
         "discount": "0",
         "priority": "0",
         "votes": "7",
+        "image": "https://img.olx.com.br/images/88/883292515784593.jpg",
         "promo": false
       },
     ];

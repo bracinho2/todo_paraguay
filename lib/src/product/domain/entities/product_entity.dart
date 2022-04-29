@@ -3,9 +3,10 @@ class ProductEntity {
   final String name;
   final String description;
   final String store;
-  final double value;
+  final double price;
   final double discount;
   final int priority;
+  final String image;
   final int votes;
   final bool promo;
 
@@ -14,9 +15,10 @@ class ProductEntity {
     required this.name,
     required this.description,
     required this.store,
-    required this.value,
+    required this.price,
     required this.discount,
     required this.priority,
+    required this.image,
     required this.votes,
     required this.promo,
   });

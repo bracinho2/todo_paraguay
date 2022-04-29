@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
+
 import 'package:todo_paraguay/shared/themes/text_styles.dart';
 import 'package:todo_paraguay/src/home/detail/detail_page.dart';
-
 import 'package:todo_paraguay/src/product/domain/entities/product_entity.dart';
+import 'package:todo_paraguay/src/product/presenter_bloc/page/product_detail_page_bloc.dart';
 
 class PopularItemList extends StatelessWidget {
-  final ProductEntity product;
+  final String name;
+  final String description;
+  final double price;
+  final String image;
   const PopularItemList({
     Key? key,
-    required this.product,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.image,
   }) : super(key: key);
 
   @override
@@ -18,7 +25,12 @@ class PopularItemList extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const DetailPage(),
+            builder: (context) => ProductDetailPageBloc(
+              name: name,
+              description: description,
+              price: price,
+              image: image,
+            ),
           ),
         );
       },
@@ -33,9 +45,7 @@ class PopularItemList extends StatelessWidget {
               height: 81,
               width: 62,
               decoration: BoxDecoration(
-                image: const DecorationImage(
-                    image: NetworkImage(
-                        'https://img.olx.com.br/images/88/883292515784593.jpg')),
+                image: DecorationImage(image: NetworkImage(image)),
                 borderRadius: BorderRadius.circular(10),
                 //color: AppColors.cinzaFraco,
               ),
@@ -48,21 +58,21 @@ class PopularItemList extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  product.name,
+                  name,
                   style: AppTextStyles.text22boldW600,
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 Text(
-                  product.description,
+                  description,
                   style: AppTextStyles.text14boldW600preto,
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 Text(
-                  'U\$D ' + product.value.toString(),
+                  'U\$D ' + price.toString(),
                   style: AppTextStyles.text14boldW600preto,
                 ),
               ],

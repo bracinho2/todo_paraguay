@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:todo_paraguay/shared/themes/colors.dart';
-import 'package:todo_paraguay/src/home/detail/detail_page.dart';
+import 'package:todo_paraguay/src/product/presenter_bloc/page/product_detail_page_bloc.dart';
 
 class NewItemList extends StatelessWidget {
-  final String title;
+  final String name;
+  final String description;
+  final double price;
+  final String image;
   const NewItemList({
     Key? key,
-    required this.title,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.image,
   }) : super(key: key);
 
   @override
@@ -16,24 +21,26 @@ class NewItemList extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const DetailPage(),
+            builder: (context) => ProductDetailPageBloc(
+              name: name,
+              description: description,
+              price: price,
+              image: image,
+            ),
           ),
         );
       },
-      child: Container(
-        child: Image.network(
-            'https://img.olx.com.br/images/88/883292515784593.jpg'),
-        margin: const EdgeInsets.only(
-          right: 19,
-        ),
+      child: SizedBox(
         height: 210,
         width: 153,
-        decoration: BoxDecoration(
-          // image: const DecorationImage(
-          //     image: NetworkImage(
-          //         'https://img.olx.com.br/images/88/883292515784593.jpg')),
-          borderRadius: BorderRadius.circular(10),
-          //color: AppColors.laranja,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10), // Image border
+            child: Image.network(
+                'https://img.olx.com.br/images/88/883292515784593.jpg',
+                fit: BoxFit.cover),
+          ),
         ),
       ),
     );

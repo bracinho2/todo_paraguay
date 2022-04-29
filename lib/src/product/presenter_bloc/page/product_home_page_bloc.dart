@@ -72,7 +72,11 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                     physics: const BouncingScrollPhysics(),
                     children: [
                       const AppBarWidget(),
-                      const SearchBarWidget(),
+                      SearchBarWidget(
+                        onChanged: (value) {
+                          print(value);
+                        },
+                      ),
                       Container(
                         height: 25,
                         margin: const EdgeInsets.only(top: 30),
@@ -124,13 +128,18 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                               height: 210,
                               child: ListView.builder(
                                 padding:
-                                    const EdgeInsets.only(left: 25, right: 6),
+                                    const EdgeInsets.only(left: 5, right: 6),
                                 itemCount: state.products.length,
                                 physics: const BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
                                   final product = state.products[index];
-                                  return NewItemList(title: product.name);
+                                  return NewItemList(
+                                    name: product.name,
+                                    description: product.description,
+                                    price: product.price,
+                                    image: product.image,
+                                  );
                                 },
                               ),
                             ),
@@ -139,7 +148,7 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                               height: 210,
                               child: ListView.builder(
                                   padding:
-                                      const EdgeInsets.only(left: 25, right: 6),
+                                      const EdgeInsets.only(left: 5, right: 6),
                                   itemCount: state.products.length,
                                   physics: const BouncingScrollPhysics(),
                                   scrollDirection: Axis.horizontal,
@@ -160,7 +169,7 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                               height: 210,
                               child: ListView.builder(
                                   padding:
-                                      const EdgeInsets.only(left: 25, right: 6),
+                                      const EdgeInsets.only(left: 5, right: 6),
                                   itemCount: state.products.length,
                                   physics: const BouncingScrollPhysics(),
                                   scrollDirection: Axis.horizontal,
@@ -195,7 +204,10 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                         itemBuilder: (context, index) {
                           final product = state.products[index];
                           return PopularItemList(
-                            product: product,
+                            name: product.name,
+                            description: product.description,
+                            price: product.price,
+                            image: product.image,
                           );
                         },
                       ),
