@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_paraguay/shared/debounce/debouncer.dart';
 import 'package:todo_paraguay/shared/themes/colors.dart';
 import 'package:todo_paraguay/shared/themes/text_styles.dart';
 import 'package:todo_paraguay/src/product/presenter_bloc/bloc/events/product_events.dart';
@@ -24,7 +25,7 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
   late final ProductBloc bloc;
 
   TabController? tabController;
-  TextEditingController searchController = TextEditingController();
+  final _debouncer = Debouncer(milliseconds: 500);
 
   @override
   void initState() {
@@ -75,12 +76,11 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                 children: [
                   const AppBarWidget(),
                   SearchBarWidget(
-                    controller: searchController,
                     onChanged: (value) {
                       if (value.isEmpty) {
                         bloc.add(FetchProductEvent());
                       } else {
-                        bloc.add(SearchProductEvent(searchController.text));
+                        bloc.add(SearchProductEvent(value));
                       }
                     },
                   ),
@@ -115,12 +115,14 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                     children: [
                       const AppBarWidget(),
                       SearchBarWidget(
-                        controller: searchController,
                         onChanged: (value) {
+                          _debouncer.run(() => print(value));
                           if (value.isEmpty) {
+                            _debouncer.run(() => print('vaziu'));
                             bloc.add(FetchProductEvent());
                           } else {
-                            bloc.add(SearchProductEvent(searchController.text));
+                            _debouncer.run(() => print(value));
+                            bloc.add(SearchProductEvent(value));
                           }
                         },
                       ),
