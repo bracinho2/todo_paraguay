@@ -10,12 +10,12 @@ class ProductDatasourceImpl implements IProductDatasource {
         "name": "Yaesu FT 2900 7",
         "description": "Radio VHF",
         "store": "America",
-        "price": "250",
+        "price": "225",
         "discount": "0",
         "priority": "0",
         "votes": "7",
         "image": "https://img.olx.com.br/images/88/883292515784593.jpg",
-        "promo": false
+        "promo": true
       },
       {
         "id": "1",
@@ -28,7 +28,7 @@ class ProductDatasourceImpl implements IProductDatasource {
         "votes": "8",
         "image":
             "https://http2.mlstatic.com/D_NQ_NP_353815-MLB25301522351_012017-O.webp",
-        "promo": false
+        "promo": true
       },
       {
         "id": "1",

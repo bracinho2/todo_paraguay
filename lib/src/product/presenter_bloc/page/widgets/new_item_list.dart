@@ -37,7 +37,10 @@ class NewItemList extends StatelessWidget {
           padding: const EdgeInsets.only(right: 10),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10), // Image border
-            child: Image.network(image, fit: BoxFit.cover),
+            child: Image.network(
+              image,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),

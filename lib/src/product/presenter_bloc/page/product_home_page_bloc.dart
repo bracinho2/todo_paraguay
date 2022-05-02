@@ -120,6 +120,10 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
             );
           }
           if (state is SuccessProductState) {
+            final promoList = state.products
+                .where((product) => product.promo == true)
+                .toList();
+
             return DefaultTabController(
               length: 3,
               child: Scaffold(
@@ -167,7 +171,7 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                               Tab(
                                 child: Container(
                                   margin: const EdgeInsets.only(right: 23),
-                                  child: const Text('Usados'),
+                                  child: const Text('Promo'),
                                 ),
                               ),
                             ],
@@ -191,6 +195,9 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                                 physics: const BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
+                                  state.products.sort((a, b) {
+                                    return b.price.compareTo(a.price);
+                                  });
                                   final product = state.products[index];
                                   return NewItemList(
                                     name: product.name,
@@ -211,6 +218,9 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                                   physics: const BouncingScrollPhysics(),
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, index) {
+                                    state.products.sort((a, b) {
+                                      return b.votes.compareTo(a.votes);
+                                    });
                                     final product = state.products[index];
                                     return NewItemList(
                                       name: product.name,
@@ -226,11 +236,11 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                               child: ListView.builder(
                                   padding:
                                       const EdgeInsets.only(left: 5, right: 6),
-                                  itemCount: state.products.length,
+                                  itemCount: promoList.length,
                                   physics: const BouncingScrollPhysics(),
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, index) {
-                                    final product = state.products[index];
+                                    final product = promoList[index];
                                     return NewItemList(
                                       name: product.name,
                                       description: product.description,
