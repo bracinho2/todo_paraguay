@@ -9,7 +9,22 @@ Buque lo que necessitas en tu mano
 - Descrição detalhada do item;
 - Possibilidade de votar em um item;
 
-* elementos implementados*
+## elementos implementadas:
+- Apresentação dos itens;
+- Busca por itens;
+- Apresentação em três categorias;
+## novos elementos:
+- Cadastro de lojas;
+- Cadastro de categorias;
+- possibilidade de votos;
+
+## Funcionalidades em progresso:
+- cadastro de fotos;
+- compartilhamento de item via whatsapp;
+
+## Sugestões?
+
+
 
 
 A few resources to get you started if this is your first Flutter project:
