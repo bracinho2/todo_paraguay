@@ -1,10 +1,16 @@
-# todo_paraguay
+# Todo Paraguay
 
-A new Flutter project.
+Buque lo que necessitas en tu mano
 
-## Getting Started
+## Principais Características
 
-This project is a starting point for a Flutter application.
+- Página de busca com categorias 'Nuevo', 'Popular' e 'Promo';
+- Busca por item dentre os cadastrados;
+- Descrição detalhada do item;
+- Possibilidade de votar em um item;
+
+* elementos implementados*
+
 
 A few resources to get you started if this is your first Flutter project:
 

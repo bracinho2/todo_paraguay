@@ -11,6 +11,7 @@ class ProductMapper extends ProductEntity {
     required int priority,
     required String image,
     required int votes,
+    required bool newItem,
     required bool promo,
   }) : super(
             id: id,
@@ -22,6 +23,7 @@ class ProductMapper extends ProductEntity {
             priority: priority,
             image: image,
             votes: votes,
+            newItem: newItem,
             promo: promo);
 
   static Map<String, dynamic> toMap(ProductEntity entity) {
@@ -33,6 +35,7 @@ class ProductMapper extends ProductEntity {
       'price': entity.price,
       'image': entity.image,
       'votes': entity.votes,
+      'newItem': entity.newItem,
       'promo': entity.promo,
     };
   }
@@ -48,6 +51,7 @@ class ProductMapper extends ProductEntity {
       image: map['image'] ?? '',
       priority: map['priority'] != null ? int.parse(map['priority']) : 0,
       votes: map['votes'] != null ? int.parse(map['votes']) : 0,
+      newItem: map['newItem'] ?? false,
       promo: map['promo'] ?? false,
     );
   }

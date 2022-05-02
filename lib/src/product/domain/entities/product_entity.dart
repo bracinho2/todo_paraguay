@@ -8,6 +8,7 @@ class ProductEntity {
   final int priority;
   final String image;
   final int votes;
+  final bool newItem;
   final bool promo;
 
   const ProductEntity({
@@ -20,6 +21,7 @@ class ProductEntity {
     required this.priority,
     required this.image,
     required this.votes,
+    required this.newItem,
     required this.promo,
   });
 }

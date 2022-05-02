@@ -120,6 +120,16 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
             );
           }
           if (state is SuccessProductState) {
+            final newItem = state.products
+                .where((product) => product.newItem == true)
+                .toList();
+
+            final popularList = state.products
+                .where(
+                  (product) => product.votes >= 0,
+                )
+                .toList();
+
             final promoList = state.products
                 .where((product) => product.promo == true)
                 .toList();
@@ -191,14 +201,11 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                               child: ListView.builder(
                                 padding:
                                     const EdgeInsets.only(left: 5, right: 6),
-                                itemCount: state.products.length,
+                                itemCount: newItem.length,
                                 physics: const BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
-                                  state.products.sort((a, b) {
-                                    return b.price.compareTo(a.price);
-                                  });
-                                  final product = state.products[index];
+                                  final product = newItem[index];
                                   return NewItemList(
                                     name: product.name,
                                     description: product.description,
@@ -214,14 +221,11 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                               child: ListView.builder(
                                   padding:
                                       const EdgeInsets.only(left: 5, right: 6),
-                                  itemCount: state.products.length,
+                                  itemCount: popularList.length,
                                   physics: const BouncingScrollPhysics(),
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, index) {
-                                    state.products.sort((a, b) {
-                                      return b.votes.compareTo(a.votes);
-                                    });
-                                    final product = state.products[index];
+                                    final product = popularList[index];
                                     return NewItemList(
                                       name: product.name,
                                       description: product.description,

@@ -14,6 +14,7 @@ class ProductDatasourceImpl implements IProductDatasource {
         "discount": "0",
         "priority": "0",
         "votes": "7",
+        "newItem": false,
         "image": "https://img.olx.com.br/images/88/883292515784593.jpg",
         "promo": true
       },
@@ -26,6 +27,7 @@ class ProductDatasourceImpl implements IProductDatasource {
         "discount": "0",
         "priority": "0",
         "votes": "8",
+        "newItem": true,
         "image":
             "https://http2.mlstatic.com/D_NQ_NP_353815-MLB25301522351_012017-O.webp",
         "promo": true
@@ -39,9 +41,10 @@ class ProductDatasourceImpl implements IProductDatasource {
         "discount": "0",
         "priority": "0",
         "votes": "18",
+        "newItem": false,
         "image":
             "https://1.bp.blogspot.com/-JfMv-c0scK0/YHcg8hqp3bI/AAAAAAAAJY0/udRJvPKxzZgSzCxr-geFKydn811C3DKngCLcBGAsYHQ/s854/-%2BFOTO%2BMAIS%2BNEWS%2B1.jpg",
-        "promo": false
+        "promo": true
       },
     ];
 
