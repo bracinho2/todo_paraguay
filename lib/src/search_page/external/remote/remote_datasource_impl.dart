@@ -1,4 +1,4 @@
-import 'package:todo_paraguay/src/product/infra/datasource/product_datasource_interface.dart';
+import '../../infra/datasource/product_datasource_interface.dart';
 
 class ProductDatasourceImpl implements IProductDatasource {
   @override
@@ -44,7 +44,7 @@ class ProductDatasourceImpl implements IProductDatasource {
         "newItem": false,
         "image":
             "https://1.bp.blogspot.com/-JfMv-c0scK0/YHcg8hqp3bI/AAAAAAAAJY0/udRJvPKxzZgSzCxr-geFKydn811C3DKngCLcBGAsYHQ/s854/-%2BFOTO%2BMAIS%2BNEWS%2B1.jpg",
-        "promo": true
+        "promo": false
       },
     ];
 

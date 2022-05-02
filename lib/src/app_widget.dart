@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_paraguay/src/product/presenter_bloc/page/product_home_page_bloc.dart';
-import 'package:todo_paraguay/src/product/product_injection.dart';
+import 'package:todo_paraguay/src/search_page/presenter_bloc/page/product_home_page_bloc.dart';
+import 'package:todo_paraguay/src/search_page/product_injection.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);

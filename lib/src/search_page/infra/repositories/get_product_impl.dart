@@ -1,7 +1,7 @@
-import 'package:todo_paraguay/src/product/domain/entities/product_entity.dart';
-import 'package:todo_paraguay/src/product/domain/repositories/get_categories_interface.dart';
-import 'package:todo_paraguay/src/product/infra/datasource/product_datasource_interface.dart';
-import 'package:todo_paraguay/src/product/infra/mappers/product_mapper.dart';
+import '../../domain/entities/product_entity.dart';
+import '../../domain/repositories/get_categories_interface.dart';
+import '../datasource/product_datasource_interface.dart';
+import '../mappers/product_mapper.dart';
 
 class ProductRepositoryImpl implements IProductRepository {
   final IProductDatasource _iProductDatasource;

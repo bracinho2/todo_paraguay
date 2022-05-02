@@ -1,4 +1,4 @@
-import 'package:todo_paraguay/src/product/domain/entities/product_entity.dart';
+import '../../domain/entities/product_entity.dart';
 
 class ProductMapper extends ProductEntity {
   ProductMapper({

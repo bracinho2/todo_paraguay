@@ -1,7 +1,8 @@
-import 'package:todo_paraguay/src/product/domain/usecases/get_product_usecase.dart';
 import 'package:bloc/bloc.dart';
-import 'package:todo_paraguay/src/product/presenter_bloc/bloc/events/product_events.dart';
-import 'package:todo_paraguay/src/product/presenter_bloc/bloc/states/product_state_bloc.dart';
+import 'package:todo_paraguay/src/search_page/presenter_bloc/bloc/events/product_events.dart';
+import 'package:todo_paraguay/src/search_page/presenter_bloc/bloc/states/product_state_bloc.dart';
+
+import '../../domain/usecases/get_product_usecase.dart';
 
 class ProductBloc extends Bloc<ProductEvent, ProductStateBloc> {
   final IGetProductUsecase _iGetProductUsecase;

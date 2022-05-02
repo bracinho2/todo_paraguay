@@ -4,14 +4,14 @@ import 'package:provider/provider.dart';
 import 'package:todo_paraguay/shared/debounce/debouncer.dart';
 import 'package:todo_paraguay/shared/themes/colors.dart';
 import 'package:todo_paraguay/shared/themes/text_styles.dart';
-import 'package:todo_paraguay/src/product/presenter_bloc/bloc/events/product_events.dart';
-
-import 'package:todo_paraguay/src/product/presenter_bloc/bloc/product_bloc.dart';
-import 'package:todo_paraguay/src/product/presenter_bloc/bloc/states/product_state_bloc.dart';
-import 'package:todo_paraguay/src/product/presenter_bloc/page/widgets/app_bar.dart';
-import 'package:todo_paraguay/src/product/presenter_bloc/page/widgets/new_item_list.dart';
-import 'package:todo_paraguay/src/product/presenter_bloc/page/widgets/popular_Item_list.dart';
-import 'package:todo_paraguay/src/product/presenter_bloc/page/widgets/search_bar_widget.dart';
+import 'package:todo_paraguay/shared/widgets/drawer_widget.dart';
+import 'package:todo_paraguay/src/search_page/presenter_bloc/bloc/events/product_events.dart';
+import 'package:todo_paraguay/src/search_page/presenter_bloc/bloc/product_bloc.dart';
+import 'package:todo_paraguay/src/search_page/presenter_bloc/bloc/states/product_state_bloc.dart';
+import 'package:todo_paraguay/src/search_page/presenter_bloc/page/widgets/app_bar.dart';
+import 'package:todo_paraguay/src/search_page/presenter_bloc/page/widgets/new_item_list.dart';
+import 'package:todo_paraguay/src/search_page/presenter_bloc/page/widgets/popular_Item_list.dart';
+import 'package:todo_paraguay/src/search_page/presenter_bloc/page/widgets/search_bar_widget.dart';
 
 class ProductHomePageBloc extends StatefulWidget {
   const ProductHomePageBloc({Key? key}) : super(key: key);
@@ -137,6 +137,7 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
             return DefaultTabController(
               length: 3,
               child: Scaffold(
+                drawer: const DrawerWidget(),
                 resizeToAvoidBottomInset: true,
                 body: SafeArea(
                   child: ListView(

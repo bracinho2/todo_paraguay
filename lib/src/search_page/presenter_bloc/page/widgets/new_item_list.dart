@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_paraguay/src/product/presenter_bloc/page/product_detail_page_bloc.dart';
+import 'package:todo_paraguay/src/search_page/presenter_bloc/page/product_detail_page_bloc.dart';
 
 class NewItemList extends StatelessWidget {
   final String name;
