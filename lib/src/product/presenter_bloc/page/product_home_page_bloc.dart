@@ -71,34 +71,49 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
           if (state is SearchProductState) {
             return Scaffold(
               body: SafeArea(
-                  child: ListView(
-                physics: const BouncingScrollPhysics(),
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const AppBarWidget(),
                   SearchBarWidget(
                     onChanged: (value) {
-                      if (value.isEmpty) {
-                        bloc.add(FetchProductEvent());
+                      if (value.isNotEmpty) {
+                        _debouncer
+                            .run(() => bloc.add(SearchProductEvent(value)));
                       } else {
-                        bloc.add(SearchProductEvent(value));
+                        _debouncer.run(() => bloc.add(FetchProductEvent()));
                       }
                     },
-                  ),
-                  ListView.builder(
-                    itemCount: state.products.length,
-                    padding:
-                        const EdgeInsets.only(top: 25, right: 25, left: 25),
-                    physics: const BouncingScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      final product = state.products[index];
-                      return PopularItemList(
-                        name: product.name,
-                        description: product.description,
-                        price: product.price,
-                        image: product.image,
-                      );
+                    searchClose: () {
+                      bloc.add(FetchProductEvent());
                     },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Expanded(
+                    child: ListView(
+                      shrinkWrap: false,
+                      //physics: ScrollPhysics(),
+                      children: [
+                        ListView.builder(
+                          itemCount: state.products.length,
+                          padding: const EdgeInsets.only(
+                              top: 25, right: 25, left: 25),
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            final product = state.products[index];
+                            return PopularItemList(
+                              name: product.name,
+                              description: product.description,
+                              price: product.price,
+                              image: product.image,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               )),
@@ -115,15 +130,9 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                     children: [
                       const AppBarWidget(),
                       SearchBarWidget(
-                        onChanged: (value) {
-                          _debouncer.run(() => print(value));
-                          if (value.isEmpty) {
-                            _debouncer.run(() => print('vaziu'));
-                            bloc.add(FetchProductEvent());
-                          } else {
-                            _debouncer.run(() => print(value));
-                            bloc.add(SearchProductEvent(value));
-                          }
+                        onTap: () {
+                          _debouncer
+                              .run(() => bloc.add(SearchProductEvent('')));
                         },
                       ),
                       Container(
@@ -247,6 +256,9 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                         physics: const BouncingScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
+                          state.products.sort((a, b) {
+                            return b.votes.compareTo(a.votes);
+                          });
                           final product = state.products[index];
                           return PopularItemList(
                             name: product.name,

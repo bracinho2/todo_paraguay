@@ -9,6 +9,7 @@ class AppBarWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 25, top: 25),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(

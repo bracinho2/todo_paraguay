@@ -5,10 +5,16 @@ import 'package:todo_paraguay/shared/themes/text_styles.dart';
 
 class SearchBarWidget extends StatelessWidget {
   final void Function(String value)? onChanged;
+  final TextEditingController? controller;
+  final VoidCallback? onTap;
+  final VoidCallback? searchClose;
 
   const SearchBarWidget({
     Key? key,
     this.onChanged,
+    this.controller,
+    this.onTap,
+    this.searchClose,
   }) : super(key: key);
 
   @override
@@ -20,29 +26,24 @@ class SearchBarWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         color: AppColors.cinzaFraco,
       ),
-      child: Stack(
-        children: [
-          TextField(
-            onChanged: onChanged,
-            cursorColor: Colors.amber,
-            style: AppTextStyles.text14boldW600preto,
-            decoration: InputDecoration(
-              contentPadding:
-                  const EdgeInsets.only(left: 19, right: 50, bottom: 8),
-              border: InputBorder.none,
-              hintText: 'busque lo que necessitas',
-              hintStyle: AppTextStyles.text14boldW600preto,
-            ),
+      child: TextField(
+        onTap: onTap,
+        controller: controller,
+        onChanged: onChanged,
+        cursorColor: Colors.amber,
+        style: AppTextStyles.text14boldW600preto,
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.only(left: 19, right: 50, top: 5),
+          border: InputBorder.none,
+          hintText: 'busque lo que necessitas',
+          hintStyle: AppTextStyles.text14boldW600preto,
+          suffixIcon: GestureDetector(
+            child: onChanged != null
+                ? const Icon(Icons.close)
+                : const Icon(Icons.check_circle),
+            onTap: onChanged != null ? searchClose : null,
           ),
-          Positioned(
-            right: 10,
-            bottom: 6,
-            child: Icon(
-              Icons.search,
-              color: AppColors.cinzaForte,
-            ),
-          )
-        ],
+        ),
       ),
     );
   }
