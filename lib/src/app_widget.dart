@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_paraguay/src/camera/image_picker.dart';
 import 'package:todo_paraguay/src/search_page/presenter_bloc/page/product_home_page_bloc.dart';
 import 'package:todo_paraguay/src/search_page/product_injection.dart';
 
@@ -18,7 +19,7 @@ class AppWidget extends StatelessWidget {
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
         ),
-        home: const ProductHomePageBloc(),
+        home: const Camera(),
       ),
     );
   }
