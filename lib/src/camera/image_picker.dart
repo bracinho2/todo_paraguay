@@ -31,7 +31,7 @@ class _CameraState extends State<Camera> {
                 children: <Widget>[
                   ListTile(
                       leading: const Icon(Icons.photo_library),
-                      title: const Text('Photo Library'),
+                      title: const Text('Galeria'),
                       onTap: () {
                         setState(() {
                           _image = _picker.imageFromGallery();
@@ -40,7 +40,7 @@ class _CameraState extends State<Camera> {
                       }),
                   ListTile(
                     leading: const Icon(Icons.photo_camera),
-                    title: const Text('Camera'),
+                    title: const Text('Sacar Foto'),
                     onTap: () {
                       setState(() {
                         _image = _picker.imageFromCamera();
