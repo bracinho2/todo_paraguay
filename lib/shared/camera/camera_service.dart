@@ -1,8 +1,7 @@
 import 'package:image_picker/image_picker.dart';
 
 abstract class GetImages {
-  Future<String?> imageFromCamera();
-  Future<String?> imageFromGallery();
+  Future<String?> image();
 }
 
 class PickImages implements GetImages {
@@ -11,20 +10,9 @@ class PickImages implements GetImages {
   PickImages(this._imagePicker);
 
   @override
-  Future<String?> imageFromCamera() async {
+  Future<String?> image({bool loadCamera = true}) async {
     final image = await _imagePicker.pickImage(
-      source: ImageSource.camera,
-      imageQuality: 50,
-      preferredCameraDevice: CameraDevice.rear,
-    );
-
-    return image?.path;
-  }
-
-  @override
-  Future<String?> imageFromGallery() async {
-    final image = await _imagePicker.pickImage(
-      source: ImageSource.gallery,
+      source: loadCamera ? ImageSource.camera : ImageSource.gallery,
       imageQuality: 50,
     );
 

@@ -2,16 +2,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthService extends ChangeNotifier {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _firebaseAuth;
   User? user;
   bool isLoading = true;
 
-  AuthService() {
+  AuthService(this._firebaseAuth) {
     _authCheck();
   }
 
   _authCheck() {
-    _auth.authStateChanges().listen((User? user) {
+    _firebaseAuth.authStateChanges().listen((User? user) {
       user = (user == null) ? null : user;
       isLoading = false;
       notifyListeners();
@@ -25,13 +25,13 @@ class AuthService extends ChangeNotifier {
   }
 
   _getUser() {
-    user = _auth.currentUser;
+    user = _firebaseAuth.currentUser;
     notifyListeners();
   }
 
   register({required String email, required String password}) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
+      await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
 
       _getUser();
@@ -46,7 +46,8 @@ class AuthService extends ChangeNotifier {
 
   login({required String email, required String password}) async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
 
       _getUser();
     } on FirebaseAuthException catch (error) {
@@ -58,8 +59,8 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  _logout() async {
-    _auth.signOut();
+  logout() async {
+    _firebaseAuth.signOut();
     _getUser();
   }
 }

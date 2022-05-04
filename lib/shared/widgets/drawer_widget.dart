@@ -33,7 +33,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           ),
           ListTile(
             leading: const FaIcon(FontAwesomeIcons.circleUser),
-            title: Text('Usuario'),
+            title: const Text('Usuario'),
             onTap: () {
               setState(() {});
               Navigator.pop(context);

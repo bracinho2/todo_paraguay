@@ -34,7 +34,7 @@ class _CameraState extends State<Camera> {
                       title: const Text('Galeria'),
                       onTap: () {
                         setState(() {
-                          _image = _picker.imageFromGallery();
+                          _image = _picker.image(loadCamera: true);
                           Navigator.of(context).pop();
                         });
                       }),
@@ -43,7 +43,7 @@ class _CameraState extends State<Camera> {
                     title: const Text('Sacar Foto'),
                     onTap: () {
                       setState(() {
-                        _image = _picker.imageFromCamera();
+                        _image = _picker.image(loadCamera: true);
                         Navigator.of(context).pop();
                       });
                     },

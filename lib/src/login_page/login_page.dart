@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_paraguay/shared/auth_service/auth_service.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -9,6 +10,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  late final AuthService _auth;
   final formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final senha = TextEditingController();
@@ -22,6 +24,9 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
     setFormAction(true);
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      _auth = context.watch<AuthService>();
+    });
   }
 
   void setFormAction(bool action) {
@@ -39,8 +44,6 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  final _auth = AuthService();
-
   login() async {
     try {
       await _auth.login(email: email.text, password: senha.text);
@@ -50,18 +53,28 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  registrar() {}
+  registrar() async {
+    try {
+      await _auth.register(email: email.text, password: senha.text);
+    } on AuthException catch (error) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(error.message)));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(left: 25, right: 25, top: 100),
             child: Form(
               key: formKey,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     titulo,
