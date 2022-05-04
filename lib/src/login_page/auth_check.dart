@@ -13,7 +13,7 @@ class AuthCheck extends StatefulWidget {
 }
 
 class _AuthCheckState extends State<AuthCheck> {
-  AuthService _auth = AuthService(FirebaseAuth.instance);
+  final _auth = AuthService(FirebaseAuth.instance);
 
   @override
   void initState() {
