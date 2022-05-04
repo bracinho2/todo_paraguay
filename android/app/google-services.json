@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "855803369317",
+    "project_id": "todoparaguay",
+    "storage_bucket": "todoparaguay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855803369317:android:a614e182b5ff4d21cdb38c",
+        "android_client_info": {
+          "package_name": "io.todo_paraguay.todo_paraguay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855803369317-2lm6mr73ijeaoc1sqrdtrf9pahf49ec4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAivVtzYQS-Jzo17tjP1J6iN4aK8uzv5P0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "855803369317-2lm6mr73ijeaoc1sqrdtrf9pahf49ec4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
