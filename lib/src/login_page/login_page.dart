@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_paraguay/shared/auth_service/auth_service.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_paraguay/shared/auth_service/google_auth_service_impl.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late final AuthService _auth;
+  late final GoogleAuth _auth;
   final formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final senha = TextEditingController();
@@ -25,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
     setFormAction(true);
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      _auth = context.watch<AuthService>();
+      _auth = Provider.of<GoogleAuth>(context, listen: false);
     });
   }
 
@@ -44,18 +45,18 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  login() async {
+  login(BuildContext context) async {
     try {
-      await _auth.login(email: email.text, password: senha.text);
+      _auth.login(context: context, email: email.text, password: senha.text);
     } on AuthException catch (error) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(error.message)));
     }
   }
 
-  registrar() async {
+  registrar(BuildContext context) async {
     try {
-      await _auth.register(email: email.text, password: senha.text);
+      _auth.register(email: email.text, password: senha.text);
     } on AuthException catch (error) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(error.message)));
@@ -93,19 +94,18 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextFormField(
                     controller: senha,
+                    obscureText: true,
                     decoration: const InputDecoration(
-                      label: Text('senha'),
+                      label: Text('Password'),
                       border: OutlineInputBorder(),
                     ),
                   ),
                   ElevatedButton(
                     onPressed: () {
                       if (isLogin) {
-                        login();
-                        print(senha.text);
-                        print(email.text);
+                        login(context);
                       } else {
-                        registrar();
+                        registrar(context);
                       }
                     },
                     child: Row(

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_paraguay/shared/auth_service/google_auth_service_impl.dart';
 import 'package:todo_paraguay/shared/debounce/debouncer.dart';
 import 'package:todo_paraguay/shared/themes/colors.dart';
 import 'package:todo_paraguay/shared/themes/text_styles.dart';
+import 'package:todo_paraguay/shared/widgets/bottombar_widget.dart';
 import 'package:todo_paraguay/shared/widgets/drawer_widget.dart';
 import 'package:todo_paraguay/src/search_page/presenter_bloc/bloc/events/product_events.dart';
 import 'package:todo_paraguay/src/search_page/presenter_bloc/bloc/product_bloc.dart';
@@ -23,6 +25,7 @@ class ProductHomePageBloc extends StatefulWidget {
 class _ProductHomePageBlocState extends State<ProductHomePageBloc>
     with SingleTickerProviderStateMixin {
   late final ProductBloc bloc;
+  late final GoogleAuth auth;
 
   TabController? tabController;
   final _debouncer = Debouncer(milliseconds: 500);
@@ -33,6 +36,7 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
 
     tabController = TabController(length: 3, vsync: this);
     bloc = Provider.of<ProductBloc>(context, listen: false);
+    auth = Provider.of<GoogleAuth>(context, listen: false);
 
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       bloc.add(FetchProductEvent());
@@ -285,6 +289,12 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                       ),
                     ],
                   ),
+                ),
+                bottomNavigationBar: BottonBarWidget(
+                  exit: () {
+                    print('Exit');
+                    auth.logout(context: context);
+                  },
                 ),
               ),
             );

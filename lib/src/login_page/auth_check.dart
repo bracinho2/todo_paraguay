@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_paraguay/shared/auth_service/auth_service.dart';
 import 'package:todo_paraguay/src/search_page/presenter_bloc/page/product_home_page_bloc.dart';
-import 'package:provider/provider.dart';
 import 'login_page.dart';
 
 class AuthCheck extends StatefulWidget {
