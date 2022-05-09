@@ -25,3 +25,9 @@ class ErrorLogout extends Failure {
     required this.message,
   });
 }
+
+class ErrorGetLoggedUser extends Failure {
+  @override
+  final String message;
+  ErrorGetLoggedUser({required this.message});
+}

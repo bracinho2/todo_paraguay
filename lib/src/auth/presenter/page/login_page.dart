@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:smart_builder/shared/helpers/validator_helpers.dart';
-import 'package:smart_builder/shared/widget/button_widget.dart';
-import 'package:smart_builder/shared/widget/input_text_widget.dart';
-import 'package:smart_builder/src/auth/presenter/store/auth_store_controller.dart';
+import 'package:todo_paraguay/src/auth/presenter/store/auth_store_controller.dart';
+import 'package:provider/provider.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  final authController = GetIt.instance.get<AuthController>();
+  late final _authStore;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      _authStore = Provider.of<AuthStore>(context, listen: false);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +33,7 @@ class LoginPage extends StatelessWidget {
           height: size.height,
           width: size.width,
           child: Form(
-            key: authController.formKey,
+            key: _authStore.formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -58,7 +68,6 @@ class LoginPage extends StatelessWidget {
                     authController.validateLoginForm(
                       userName: _usernameController.text,
                       password: _passwordController.text,
-                      email: 'bracinho2@hotmail.com',
                       context: context,
                     );
 
