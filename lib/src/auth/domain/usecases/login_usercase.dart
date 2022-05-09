@@ -6,7 +6,7 @@ import 'package:todo_paraguay/src/auth/domain/errors/errors.dart';
 import 'package:todo_paraguay/src/auth/domain/repositories/auth_repository.dart';
 
 abstract class ILoginUsercase {
-  Future<Either<AuthException, LoggedUser?>> call(CredentialsParams params);
+  Future<Either<Failure, LoggedUser?>> call(CredentialsParams params);
 }
 
 class LoginUserCase implements ILoginUsercase {
@@ -14,8 +14,7 @@ class LoginUserCase implements ILoginUsercase {
   LoginUserCase(this.repository);
 
   @override
-  Future<Either<AuthException, LoggedUser?>> call(
-      CredentialsParams params) async {
+  Future<Either<Failure, LoggedUser?>> call(CredentialsParams params) async {
     if (!isEmail(params.email)) {
       return Left(AuthException(message: 'Erro de Email'));
     }
