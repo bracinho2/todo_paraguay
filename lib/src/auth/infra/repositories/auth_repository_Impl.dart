@@ -20,7 +20,7 @@ class AuthRepositoryImpl implements IAuthRepository {
     } on AuthException catch (e) {
       return Left(e);
     } on Exception {
-      return Left(AuthException(message: 'Exception Error'));
+      return Left(AuthException(message: 'Senha errada'));
     }
   }
 

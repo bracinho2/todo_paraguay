@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_paraguay/shared/auth_service/auth_service.dart';
 import 'package:todo_paraguay/shared/auth_service/auth_service_interface.dart';
-import 'package:todo_paraguay/src/login_page/login_page.dart';
+import 'package:todo_paraguay/src/auth/presenter/page/login_page.dart';
 import 'package:todo_paraguay/src/search_page/presenter_bloc/page/product_home_page_bloc.dart';
 
 class GoogleAuth implements IAuthService {
@@ -18,9 +18,9 @@ class GoogleAuth implements IAuthService {
       loggedUser = (user == null) ? null : user;
 
       if (loggedUser == null) {
-        print('Usuário não está logado! =(');
+        print('Usuário não está logado! =(((');
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const LoginPage()));
+            context, MaterialPageRoute(builder: (_) => const LoginPageAuth()));
       } else {
         print('Usuario logado: ' + user.toString());
         Navigator.pushReplacement(

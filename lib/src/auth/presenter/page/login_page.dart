@@ -1,26 +1,33 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_paraguay/shared/validators/validators.dart';
+import 'package:todo_paraguay/shared/widgets/button_widget.dart';
+import 'package:todo_paraguay/shared/widgets/input_text_widget.dart';
+import 'package:todo_paraguay/src/auth/domain/usecases/login_usercase.dart';
+import 'package:todo_paraguay/src/auth/external/datasources/firebase_auth_email.impl.dart';
+import 'package:todo_paraguay/src/auth/infra/repositories/auth_repository_Impl.dart';
 import 'package:todo_paraguay/src/auth/presenter/store/auth_store_controller.dart';
-import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
-  LoginPage({Key? key}) : super(key: key);
+class LoginPageAuth extends StatefulWidget {
+  const LoginPageAuth({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginPageAuth> createState() => _LoginPageAuthState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final _usernameController = TextEditingController();
+class _LoginPageAuthState extends State<LoginPageAuth> {
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  late final _authStore;
+  final AuthStore _authStore = AuthStore(LoginUserCase(
+      AuthRepositoryImpl(FirebaseDataSourceImpl(FirebaseAuth.instance))));
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      _authStore = Provider.of<AuthStore>(context, listen: false);
-    });
+    // WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    //   _authStore = Provider.of<AuthStore>(context, listen: false);
+    // });
   }
 
   @override
@@ -37,16 +44,16 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  height: 110,
-                  child: Image.asset('assets/images/sb_logo.png'),
-                ),
+                // SizedBox(
+                //   height: 110,
+                //   child: Image.asset('assets/images/sb_logo.png'),
+                // ),
                 const SizedBox(
                   height: 50,
                 ),
                 InputTextWidget(
-                  label: 'usuário',
-                  controller: _usernameController,
+                  label: 'email',
+                  controller: _emailController,
                   validator: ValidatorHelper.validaString,
                   obscureText: false,
                   enabled: true,
@@ -65,13 +72,13 @@ class _LoginPageState extends State<LoginPage> {
                 ButtonWidget(
                   label: 'Entrar',
                   onPressed: () {
-                    authController.validateLoginForm(
-                      userName: _usernameController.text,
+                    _authStore.validateLoginForm(
+                      email: _emailController.text,
                       password: _passwordController.text,
                       context: context,
                     );
 
-                    _usernameController.clear();
+                    _emailController.clear();
                     _passwordController.clear();
                   },
                 ),

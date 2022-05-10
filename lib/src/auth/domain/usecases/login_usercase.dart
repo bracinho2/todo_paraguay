@@ -18,9 +18,6 @@ class LoginUserCase implements ILoginUsercase {
     if (!isEmail(params.email)) {
       return Left(AuthException(message: 'Erro de Email'));
     }
-    if (params.userName.isEmpty) {
-      return Left(AuthException(message: 'Erro de userName'));
-    }
     if (params.password.isEmpty) {
       return Left(AuthException(message: 'Erro de Senha'));
     }

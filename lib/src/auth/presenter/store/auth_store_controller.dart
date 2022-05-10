@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_paraguay/src/auth/domain/credencial_params.dart';
 import 'package:todo_paraguay/src/auth/domain/usecases/login_usercase.dart';
+import 'package:todo_paraguay/src/search_page/presenter_bloc/page/product_home_page_bloc.dart';
 
 class AuthStore {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -11,14 +12,12 @@ class AuthStore {
 
   void validateLoginForm({
     required BuildContext context,
-    required String userName,
     required String password,
     required String email,
   }) {
     final form = formKey.currentState;
     if (form!.validate()) {
       checkLogin(
-        userName: userName,
         password: password,
         email: email,
         context: context,
@@ -27,15 +26,13 @@ class AuthStore {
   }
 
   Future<void> checkLogin(
-      {required String userName,
-      required String password,
+      {required String password,
       required String email,
       required BuildContext context}) async {
-    var usuarioModel = await _iLoginUsercase.call(
+    var result = await _iLoginUsercase.call(
       CredentialsParams(
-        userName: userName,
         password: password,
-        email: 'bracinho2@gmail.com',
+        email: email,
       ),
     );
 
@@ -47,13 +44,17 @@ class AuthStore {
       ),
     );
 
-    usuarioModel.fold(
+    result.fold(
         (l) => {
-              ScaffoldMessenger.of(context).showSnackBar(snackBar),
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(l.message))),
             }, (r) {
       if (r != null) {
-        //authenticationController.navigatorForward(context, r);
-        return r;
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const ProductHomePageBloc()));
+        //return r;
       } else {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         //print(r.toString());
