@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:todo_paraguay/core/auth_store.dart';
 import 'package:todo_paraguay/core/routes.dart';
 
 class SplashPage extends StatefulWidget {
-  final IAuthStore authStore;
+  final IAuthentication authStore;
   const SplashPage({
     Key? key,
     required this.authStore,
@@ -29,23 +28,13 @@ class _SplashPageState extends State<SplashPage> {
 
     final isLogged = await widget.authStore.currentUser();
 
-    if (isLogged) {
-      Navigator.pushReplacementNamed(context, AppRouter.HOME);
-      return;
-    }
-    Navigator.pushReplacementNamed(context, AppRouter.LOGIN);
-
-    if (isLogged) {
-      Navigator.pushReplacementNamed(context, AppRouter.HOME);
-      return;
-    } else {
+    if (!isLogged) {
       Navigator.pushReplacementNamed(context, AppRouter.LOGIN);
+      print('SPLASH -> LOGIN PAGE;');
       return;
     }
-
-    // widget.authStore.currentUser().then((value) => value
-    //     ? Navigator.pushReplacementNamed(context, AppRouter.HOME)
-    //     : Navigator.pushReplacementNamed(context, AppRouter.LOGIN));
+    Navigator.pushReplacementNamed(context, AppRouter.HOME);
+    print('SPLASH -> HOME PAGE;');
   }
 
   @override

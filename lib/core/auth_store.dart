@@ -1,16 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-abstract class IAuthStore {
+abstract class IAuthentication {
   Future<bool> checkLogin();
   Future<bool> currentUser();
   Future<void> logout();
 }
 
-class AuthStoreImpl implements IAuthStore {
+class AuthenticationImpl implements IAuthentication {
   final FirebaseAuth _firebaseAuth;
   User? loggedUser;
 
-  AuthStoreImpl(this._firebaseAuth);
+  AuthenticationImpl(this._firebaseAuth);
   @override
   Future<bool> checkLogin() async {
     var isLogged;

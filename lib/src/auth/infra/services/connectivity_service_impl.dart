@@ -17,8 +17,7 @@ class ConnectivityServiceImpl implements IConnectivityService {
       }
       throw ConnectionError(message: 'Você está offline');
     } on Failure catch (e) {
-      return left(ConnectionError(
-          message: 'Erro ao recuperar a informação de conexão!'));
+      return left(ConnectionError(message: e.toString()));
     }
   }
 }
