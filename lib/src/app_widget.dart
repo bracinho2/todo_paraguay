@@ -22,6 +22,10 @@ class AppWidget extends StatelessWidget {
         Provider<AuthStoreImpl>(
             create: (context) => AuthStoreImpl(context.read())),
         Provider<GoogleAuth>(create: (context) => GoogleAuth(context.read())),
+        Provider<SplashPage>(
+            create: (context) => SplashPage(
+                  authStore: context.read(),
+                )),
         ...authInjection,
         ...productModule,
         ...loginModule,
@@ -34,7 +38,7 @@ class AppWidget extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          AppRouter.SPLASH: (_) => const SplashPage(),
+          AppRouter.SPLASH: (_) => context.read<SplashPage>(),
           AppRouter.LOGIN: (context) => const LoginPageAuth(),
           AppRouter.HOME: (context) => const ProductHomePageBloc(),
         },
