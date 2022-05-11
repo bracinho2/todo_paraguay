@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:todo_paraguay/core/auth_store.dart';
+import 'package:todo_paraguay/core/authentication_store.dart';
 import 'package:todo_paraguay/src/auth/auth_injection.dart';
+import 'package:todo_paraguay/src/search_page/product_injection.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'src/app_widget.dart';
@@ -20,10 +21,8 @@ void main() async {
         Provider<AuthenticationImpl>(
             create: (context) =>
                 AuthenticationImpl(context.read<FirebaseAuth>())),
-
         ...authInjection,
-        // ...productModule,
-        //...loginModule,
+        ...productModule,
       ],
       child: const AppWidget(),
     ),

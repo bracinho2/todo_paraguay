@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_paraguay/src/auth/domain/credencial_params.dart';
 import 'package:todo_paraguay/src/auth/domain/usecases/login_usercase.dart';
-import 'package:todo_paraguay/src/search_page/presenter_bloc/page/product_home_page_bloc.dart';
 
 class AuthStore {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -50,10 +49,10 @@ class AuthStore {
                   .showSnackBar(SnackBar(content: Text(l.message))),
             }, (r) {
       if (r != null) {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const ProductHomePageBloc()));
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //         builder: (context) => const ProductHomePageBloc()));
         //return r;
       } else {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);

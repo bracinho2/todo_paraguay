@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo_paraguay/core/auth_store.dart';
-import 'package:todo_paraguay/core/routes.dart';
+import 'package:todo_paraguay/core/authentication_store.dart';
+import 'package:todo_paraguay/core/app_router.dart';
 
 class SplashPage extends StatefulWidget {
   final IAuthentication authStore;

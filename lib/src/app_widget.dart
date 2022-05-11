@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_paraguay/core/auth_store.dart';
-import 'package:todo_paraguay/core/routes.dart';
+import 'package:todo_paraguay/core/authentication_store.dart';
+import 'package:todo_paraguay/core/app_router.dart';
 import 'package:todo_paraguay/src/auth/presenter/page/login_page.dart';
 import 'package:todo_paraguay/src/auth/presenter/store/auth_store_controller.dart';
+import 'package:todo_paraguay/src/search_page/presenter_bloc/bloc/product_bloc.dart';
 import 'package:todo_paraguay/src/search_page/presenter_bloc/page/product_home_page_bloc.dart';
 import 'package:todo_paraguay/src/splash/splash_page.dart';
 
@@ -25,7 +26,9 @@ class AppWidget extends StatelessWidget {
         AppRouter.LOGIN: (context) => LoginPageAuth(
               authStore: context.read<AuthStore>(),
             ),
-        AppRouter.HOME: (context) => const ProductHomePageBloc(),
+        AppRouter.HOME: (context) => ProductHomePageBloc(
+            bloc: context.read<ProductBloc>(),
+            auth: context.read<AuthenticationImpl>()),
       },
     );
   }

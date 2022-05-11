@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_paraguay/shared/auth_service/auth_service.dart';
 import 'package:todo_paraguay/shared/auth_service/auth_service_interface.dart';
-import 'package:todo_paraguay/src/search_page/presenter_bloc/page/product_home_page_bloc.dart';
 
 class GoogleAuth implements IAuthService {
   User? loggedUser;
@@ -22,10 +21,10 @@ class GoogleAuth implements IAuthService {
         //     context, MaterialPageRoute(builder: (_) => LoginPageAuth()));
       } else {
         print('Usuario logado: ' + user.toString());
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const ProductHomePageBloc()));
+        // Navigator.pushReplacement(
+        //     context,
+        //     MaterialPageRoute(
+        //         builder: (context) => const ProductHomePageBloc()));
       }
     });
   }
@@ -62,8 +61,8 @@ class GoogleAuth implements IAuthService {
       _getUser();
 
       if (loggedUser != null) {
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (_) => const ProductHomePageBloc()));
+        // Navigator.pushReplacement(context,
+        //     MaterialPageRoute(builder: (_) => const ProductHomePageBloc()));
       }
     } on FirebaseAuthException catch (error) {
       if (error.code == 'user-not-found') {

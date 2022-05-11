@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_paraguay/core/authentication_store.dart';
 import 'package:todo_paraguay/shared/auth_service/google_auth_service_impl.dart';
 import 'package:todo_paraguay/shared/debounce/debouncer.dart';
 import 'package:todo_paraguay/shared/themes/colors.dart';
@@ -16,7 +17,13 @@ import 'package:todo_paraguay/src/search_page/presenter_bloc/page/widgets/popula
 import 'package:todo_paraguay/src/search_page/presenter_bloc/page/widgets/search_bar_widget.dart';
 
 class ProductHomePageBloc extends StatefulWidget {
-  const ProductHomePageBloc({Key? key}) : super(key: key);
+  final ProductBloc bloc;
+  final AuthenticationImpl auth;
+  const ProductHomePageBloc({
+    Key? key,
+    required this.bloc,
+    required this.auth,
+  }) : super(key: key);
 
   @override
   State<ProductHomePageBloc> createState() => _ProductHomePageBlocState();
@@ -36,7 +43,6 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
 
     tabController = TabController(length: 3, vsync: this);
     bloc = Provider.of<ProductBloc>(context, listen: false);
-    auth = Provider.of<GoogleAuth>(context, listen: false);
 
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       bloc.add(FetchProductEvent());
@@ -293,7 +299,7 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                 bottomNavigationBar: BottonBarWidget(
                   exit: () {
                     print('Exit');
-                    auth.logout(context: context);
+                    //auth.logout(context: context);
                   },
                 ),
               ),
