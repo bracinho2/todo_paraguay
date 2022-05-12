@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_paraguay/src/auth/domain/credencial_params.dart';
-import 'package:todo_paraguay/src/auth/domain/usecases/login_usercase.dart';
+import 'package:todo_paraguay/src/auth/domain/usecases/login_with_email.dart';
 
 class AuthStore {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();

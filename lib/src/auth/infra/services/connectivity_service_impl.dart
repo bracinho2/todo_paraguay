@@ -16,8 +16,8 @@ class ConnectivityServiceImpl implements IConnectivityService {
         return const Right(unit);
       }
       throw ConnectionError(message: 'Você está offline');
-    } on Failure catch (e) {
-      return left(ConnectionError(message: e.toString()));
+    } on Failure catch (error) {
+      return left(ConnectionError(message: error.toString()));
     }
   }
 }

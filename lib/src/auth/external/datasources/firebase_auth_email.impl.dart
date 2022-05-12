@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo_paraguay/src/auth/domain/entities/logged_user.dart';
 import 'package:todo_paraguay/src/auth/domain/credencial_params.dart';
 import 'package:todo_paraguay/src/auth/domain/errors/errors.dart';
-import 'package:todo_paraguay/src/auth/infra/datasources/auth_datasource_interface.dart';
+import 'package:todo_paraguay/src/auth/infra/datasources/login_datasource_interface.dart';
 import 'package:todo_paraguay/src/auth/infra/models/user_model.dart';
 
 class FirebaseDataSourceImpl implements IAuthDatasource {
