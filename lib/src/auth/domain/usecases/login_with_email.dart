@@ -3,6 +3,7 @@ import 'package:string_validator/string_validator.dart';
 import 'package:todo_paraguay/src/auth/domain/credencial_params.dart';
 import 'package:todo_paraguay/src/auth/domain/entities/logget_user_info.dart';
 import 'package:todo_paraguay/src/auth/domain/errors/errors.dart';
+import 'package:todo_paraguay/src/auth/domain/repositories/login_repository_interface.dart';
 import 'package:todo_paraguay/src/auth/domain/services/connectivity_service_interface.dart';
 
 abstract class IloginWithEmail {
@@ -10,7 +11,7 @@ abstract class IloginWithEmail {
 }
 
 class LoginWithEmailImpl implements IloginWithEmail {
-  final IloginWithEmail repository;
+  final ILoginRepository repository;
   final IConnectivityService _connectivityService;
 
   LoginWithEmailImpl(this.repository, this._connectivityService);
@@ -34,6 +35,7 @@ class LoginWithEmailImpl implements IloginWithEmail {
       return Left(AuthException(message: 'Digite uma senha válida'));
     }
 
-    return await repository.call(credencial);
+    return await repository.loginEmail(
+        email: credencial.email, password: credencial.password);
   }
 }

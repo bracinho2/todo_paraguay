@@ -5,9 +5,9 @@ import 'package:todo_paraguay/src/auth/domain/usecases/login_with_email.dart';
 class AuthStore {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  final ILoginUsercase _iLoginUsercase;
+  final IloginWithEmail _iloginWithEmail;
 
-  AuthStore(this._iLoginUsercase);
+  AuthStore(this._iloginWithEmail);
 
   void validateLoginForm({
     required BuildContext context,
@@ -28,7 +28,7 @@ class AuthStore {
       {required String password,
       required String email,
       required BuildContext context}) async {
-    var result = await _iLoginUsercase.call(
+    var result = await _iloginWithEmail.call(
       CredentialsParams(
         password: password,
         email: email,

@@ -1,19 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:todo_paraguay/src/auth/domain/entities/logged_user.dart';
-import 'package:todo_paraguay/src/auth/domain/credencial_params.dart';
 import 'package:todo_paraguay/src/auth/domain/errors/errors.dart';
 import 'package:todo_paraguay/src/auth/infra/datasources/login_datasource_interface.dart';
 import 'package:todo_paraguay/src/auth/infra/models/user_model.dart';
 
-class FirebaseDataSourceImpl implements IAuthDatasource {
+class FirebaseDataSourceImpl implements ILoginDataSource {
   final FirebaseAuth _firebaseAuth;
 
   FirebaseDataSourceImpl(this._firebaseAuth);
 
   @override
-  Future<LoggedUser?> login(CredentialsParams params) async {
+  Future<UserModel> loginEmail(
+      {required String email, required String password}) async {
     final result = await _firebaseAuth.signInWithEmailAndPassword(
-        email: params.email, password: params.password);
+        email: email, password: password);
     final user = result.user;
     return UserModel(
       name: user?.displayName,

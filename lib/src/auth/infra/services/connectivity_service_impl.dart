@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:todo_paraguay/src/auth/domain/errors/errors.dart';
 import 'package:todo_paraguay/src/auth/domain/services/connectivity_service_interface.dart';
-import 'package:todo_paraguay/src/auth/infra/drivers/connectivity_driver_interface.dart';
+import 'package:todo_paraguay/src/auth/external/drivers/flutter_connectivity_driver_impl.dart';
 
 class ConnectivityServiceImpl implements IConnectivityService {
-  final ConenectivityDriver _conenectivityDriver;
+  final FlutterConnectivyDriver _conenectivityDriver;
 
   ConnectivityServiceImpl(this._conenectivityDriver);
 
