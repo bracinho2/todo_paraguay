@@ -1,4 +1,4 @@
-import 'package:todo_paraguay/src/auth/infra/models/user_model.dart';
+import 'package:todo_paraguay/src/login_email/infra/models/user_model.dart';
 
 abstract class ILoginDataSource {
   Future<UserModel> loginEmail(

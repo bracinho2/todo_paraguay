@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:todo_paraguay/src/auth/domain/errors/errors.dart';
-import 'package:todo_paraguay/src/auth/domain/services/connectivity_service_interface.dart';
-import 'package:todo_paraguay/src/auth/external/drivers/flutter_connectivity_driver_impl.dart';
+import 'package:todo_paraguay/src/login_email/domain/errors/errors.dart';
+import 'package:todo_paraguay/src/login_email/domain/services/connectivity_service_interface.dart';
+import 'package:todo_paraguay/src/login_email/external/drivers/flutter_connectivity_driver_impl.dart';
 
 class ConnectivityServiceImpl implements IConnectivityService {
   final FlutterConnectivyDriver _conenectivityDriver;

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_paraguay/shared/validators/validators.dart';
 import 'package:todo_paraguay/shared/widgets/button_widget.dart';
 import 'package:todo_paraguay/shared/widgets/input_text_widget.dart';
-import 'package:todo_paraguay/src/auth/presenter/store/auth_store_controller.dart';
+import 'package:todo_paraguay/src/login_email/presenter/store/auth_store_controller.dart';
 
 class LoginPageAuth extends StatefulWidget {
   final AuthStore authStore;

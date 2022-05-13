@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:todo_paraguay/src/auth/domain/errors/errors.dart';
-import 'package:todo_paraguay/src/auth/infra/datasources/login_datasource_interface.dart';
-import 'package:todo_paraguay/src/auth/infra/models/user_model.dart';
+import 'package:todo_paraguay/src/login_email/domain/errors/errors.dart';
+import 'package:todo_paraguay/src/login_email/infra/datasources/login_datasource_interface.dart';
+import 'package:todo_paraguay/src/login_email/infra/models/user_model.dart';
 
 class FirebaseDataSourceImpl implements ILoginDataSource {
   final FirebaseAuth _firebaseAuth;

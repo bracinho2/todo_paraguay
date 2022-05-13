@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:string_validator/string_validator.dart';
-import 'package:todo_paraguay/src/auth/domain/credencial_params.dart';
-import 'package:todo_paraguay/src/auth/domain/entities/logget_user_info.dart';
-import 'package:todo_paraguay/src/auth/domain/errors/errors.dart';
-import 'package:todo_paraguay/src/auth/domain/repositories/login_repository_interface.dart';
-import 'package:todo_paraguay/src/auth/domain/services/connectivity_service_interface.dart';
+
+import 'package:todo_paraguay/src/login_email/domain/credencial_params.dart';
+import 'package:todo_paraguay/src/login_email/domain/entities/logget_user_info.dart';
+import 'package:todo_paraguay/src/login_email/domain/errors/errors.dart';
+import 'package:todo_paraguay/src/login_email/domain/repositories/login_repository_interface.dart';
+import 'package:todo_paraguay/src/login_email/domain/services/connectivity_service_interface.dart';
 
 abstract class IloginWithEmail {
   Future<Either<Failure, LoggedUserInfo?>> call(CredentialsParams credencial);

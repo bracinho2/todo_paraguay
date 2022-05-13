@@ -1,10 +1,10 @@
 // ignore: file_names
 
-import 'package:todo_paraguay/src/auth/domain/errors/errors.dart';
-import 'package:todo_paraguay/src/auth/domain/entities/logget_user_info.dart';
 import 'package:dartz/dartz.dart';
-import 'package:todo_paraguay/src/auth/domain/repositories/login_repository_interface.dart';
-import 'package:todo_paraguay/src/auth/infra/datasources/login_datasource_interface.dart';
+import 'package:todo_paraguay/src/login_email/domain/entities/logget_user_info.dart';
+import 'package:todo_paraguay/src/login_email/domain/errors/errors.dart';
+import 'package:todo_paraguay/src/login_email/domain/repositories/login_repository_interface.dart';
+import 'package:todo_paraguay/src/login_email/infra/datasources/login_datasource_interface.dart';
 
 class LoginRepositoryImpl implements ILoginRepository {
   final ILoginDataSource _iLoginDataSource;

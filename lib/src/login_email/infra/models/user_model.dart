@@ -1,5 +1,5 @@
-import 'package:todo_paraguay/src/auth/domain/entities/logged_user.dart';
-import 'package:todo_paraguay/src/auth/domain/entities/logget_user_info.dart';
+import 'package:todo_paraguay/src/login_email/domain/entities/logged_user.dart';
+import 'package:todo_paraguay/src/login_email/domain/entities/logget_user_info.dart';
 
 class UserModel extends LoggedUser implements LoggedUserInfo {
   UserModel({

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:todo_paraguay/core/authentication_store.dart';
-import 'package:todo_paraguay/shared/auth_service/google_auth_service_impl.dart';
 import 'package:todo_paraguay/shared/debounce/debouncer.dart';
 import 'package:todo_paraguay/shared/themes/colors.dart';
 import 'package:todo_paraguay/shared/themes/text_styles.dart';
@@ -31,9 +29,6 @@ class ProductHomePageBloc extends StatefulWidget {
 
 class _ProductHomePageBlocState extends State<ProductHomePageBloc>
     with SingleTickerProviderStateMixin {
-  late final ProductBloc bloc;
-  late final GoogleAuth auth;
-
   TabController? tabController;
   final _debouncer = Debouncer(milliseconds: 500);
 
@@ -42,10 +37,9 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
     super.initState();
 
     tabController = TabController(length: 3, vsync: this);
-    bloc = Provider.of<ProductBloc>(context, listen: false);
 
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      bloc.add(FetchProductEvent());
+      widget.bloc.add(FetchProductEvent());
     });
   }
 
@@ -58,7 +52,7 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<ProductBloc, ProductStateBloc>(
-        bloc: bloc,
+        bloc: widget.bloc,
         builder: (context, state) {
           if (state is EmptyProductState) {
             return const Center(
@@ -88,14 +82,15 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                   SearchBarWidget(
                     onChanged: (value) {
                       if (value.isNotEmpty) {
-                        _debouncer
-                            .run(() => bloc.add(SearchProductEvent(value)));
+                        _debouncer.run(
+                            () => widget.bloc.add(SearchProductEvent(value)));
                       } else {
-                        _debouncer.run(() => bloc.add(FetchProductEvent()));
+                        _debouncer
+                            .run(() => widget.bloc.add(FetchProductEvent()));
                       }
                     },
                     searchClose: () {
-                      bloc.add(FetchProductEvent());
+                      widget.bloc.add(FetchProductEvent());
                     },
                   ),
                   const SizedBox(
@@ -156,8 +151,8 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                       const AppBarWidget(),
                       SearchBarWidget(
                         onTap: () {
-                          _debouncer
-                              .run(() => bloc.add(SearchProductEvent('')));
+                          _debouncer.run(
+                              () => widget.bloc.add(SearchProductEvent('')));
                         },
                       ),
                       Container(
@@ -299,7 +294,7 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                 bottomNavigationBar: BottonBarWidget(
                   exit: () {
                     print('Exit');
-                    //auth.logout(context: context);
+                    widget.auth.logout();
                   },
                 ),
               ),
