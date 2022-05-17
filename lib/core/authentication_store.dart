@@ -34,15 +34,18 @@ class AuthenticationImpl implements IAuthentication {
   @override
   Future<void> logout() async {
     _firebaseAuth.signOut();
-    checkLogin();
+    //checkLogin();
   }
 
   @override
   Future<bool> currentUser() async {
-    loggedUser = _firebaseAuth.currentUser;
-    if (loggedUser == null) {
+    var result = _firebaseAuth.currentUser;
+    if (result == null) {
+      print('AUTH STORE INFORM -> ' 'Não exite usuário logado!');
       return false;
     } else {
+      loggedUser = result;
+      print('AUTH STORE INFORM -> ' + loggedUser.toString());
       return true;
     }
   }

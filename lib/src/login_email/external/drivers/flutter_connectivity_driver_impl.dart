@@ -1,7 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:todo_paraguay/src/login_email/infra/drivers/connectivity_driver_interface.dart';
 
-class FlutterConnectivyDriver implements IConennectivityDriver {
+class FlutterConnectivyDriver implements IConnectivityDriver {
   final Connectivity _connectivity;
 
   FlutterConnectivyDriver(this._connectivity);

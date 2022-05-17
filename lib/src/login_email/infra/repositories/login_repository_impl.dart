@@ -21,7 +21,8 @@ class LoginRepositoryImpl implements ILoginRepository {
           await _iLoginDataSource.loginEmail(email: email, password: password);
       return Right(user);
     } catch (error) {
-      return Left(ErrorLoginEmail(message: 'Error login with Email'));
+      return Left(
+          ErrorLoginEmail(message: 'Suas credenciais não foram encontradas.'));
     }
   }
 

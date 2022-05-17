@@ -1,3 +1,3 @@
-abstract class IConennectivityDriver {
+abstract class IConnectivityDriver {
   Future<bool> get isOnline;
 }

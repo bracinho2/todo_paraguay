@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:todo_paraguay/core/app_router.dart';
+import 'package:todo_paraguay/shared/snackbar_manager/snackbar_manager.dart';
 import 'package:todo_paraguay/src/login_email/domain/credencial_params.dart';
 import 'package:todo_paraguay/src/login_email/domain/usecases/login_with_email.dart';
 
-class AuthStore {
+class LoginStore {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final IloginWithEmail _iloginWithEmail;
 
-  AuthStore(this._iloginWithEmail);
+  LoginStore(this._iloginWithEmail);
 
-  void validateLoginForm({
-    required BuildContext context,
+  // void validateLoginForm({
+  //   required BuildContext context,
+  //   required String password,
+  //   required String email,
+  // }) {
+  //   final form = formKey.currentState;
+  //   if (form!.validate()) {
+  //     checkLogin(
+  //       password: password,
+  //       email: email,
+  //     );
+  //   }
+  // }
+
+  Future<void> checkLogin({
     required String password,
     required String email,
-  }) {
-    final form = formKey.currentState;
-    if (form!.validate()) {
-      checkLogin(
-        password: password,
-        email: email,
-        context: context,
-      );
-    }
-  }
-
-  Future<void> checkLogin(
-      {required String password,
-      required String email,
-      required BuildContext context}) async {
+  }) async {
     var result = await _iloginWithEmail.call(
       CredentialsParams(
         password: password,
@@ -35,29 +36,16 @@ class AuthStore {
       ),
     );
 
-    var snackBar = SnackBar(
-      content: const Text('Suas Credencias não foram encontradas!'),
-      action: SnackBarAction(
-        label: 'Tentar Novamente!',
-        onPressed: () {},
-      ),
-    );
-
     result.fold(
-        (l) => {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text(l.message))),
-            }, (r) {
-      if (r != null) {
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) => const ProductHomePageBloc()));
-        //return r;
+        (failure) => {
+              SnackBarManager().showError(message: failure.message),
+            }, (loggedUser) {
+      if (loggedUser != null) {
+        AppRouter.navigatorKey.currentState?.pushNamed(AppRouter.HOME);
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        //print(r.toString());
-        return r;
+        print('AUTH-STORE -> ENCONTROU O USUARIO: ENVIAR PARA HOME');
+        AppRouter.navigatorKey.currentState?.pushNamed(AppRouter.SPLASH);
+        //return loggedUser;
       }
     });
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_paraguay/core/app_router.dart';
 import 'package:todo_paraguay/core/authentication_store.dart';
 import 'package:todo_paraguay/shared/debounce/debouncer.dart';
 import 'package:todo_paraguay/shared/themes/colors.dart';
@@ -295,6 +296,8 @@ class _ProductHomePageBlocState extends State<ProductHomePageBloc>
                   exit: () {
                     print('Exit');
                     widget.auth.logout();
+                    AppRouter.navigatorKey.currentState
+                        ?.pushNamed(AppRouter.SPLASH);
                   },
                 ),
               ),

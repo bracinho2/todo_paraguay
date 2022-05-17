@@ -6,7 +6,7 @@ import 'package:todo_paraguay/shared/widgets/input_text_widget.dart';
 import 'package:todo_paraguay/src/login_email/presenter/store/auth_store_controller.dart';
 
 class LoginPageAuth extends StatefulWidget {
-  final AuthStore authStore;
+  final LoginStore authStore;
   const LoginPageAuth({
     Key? key,
     required this.authStore,
@@ -52,7 +52,7 @@ class _LoginPageAuthState extends State<LoginPageAuth> {
                 InputTextWidget(
                   label: 'email',
                   controller: _emailController,
-                  validator: ValidatorHelper.validaString,
+                  //validator: ValidatorHelper.validaString,
                   obscureText: false,
                   enabled: true,
                   minLines: 1,
@@ -61,7 +61,7 @@ class _LoginPageAuthState extends State<LoginPageAuth> {
                 InputTextWidget(
                   label: 'senha',
                   controller: _passwordController,
-                  validator: ValidatorHelper.validaString,
+                  //validator: ValidatorHelper.validaString,
                   obscureText: true,
                   enabled: true,
                   minLines: 1,
@@ -70,14 +70,13 @@ class _LoginPageAuthState extends State<LoginPageAuth> {
                 ButtonWidget(
                   label: 'Entrar',
                   onPressed: () {
-                    widget.authStore.validateLoginForm(
+                    widget.authStore.checkLogin(
                       email: _emailController.text,
                       password: _passwordController.text,
-                      context: context,
                     );
 
-                    _emailController.clear();
-                    _passwordController.clear();
+                    //_emailController.clear();
+                    //_passwordController.clear();
                   },
                 ),
               ],
