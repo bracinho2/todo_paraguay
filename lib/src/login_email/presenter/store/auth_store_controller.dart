@@ -11,20 +11,6 @@ class LoginStore {
 
   LoginStore(this._iloginWithEmail);
 
-  // void validateLoginForm({
-  //   required BuildContext context,
-  //   required String password,
-  //   required String email,
-  // }) {
-  //   final form = formKey.currentState;
-  //   if (form!.validate()) {
-  //     checkLogin(
-  //       password: password,
-  //       email: email,
-  //     );
-  //   }
-  // }
-
   Future<void> checkLogin({
     required String password,
     required String email,
@@ -40,13 +26,11 @@ class LoginStore {
         (failure) => {
               SnackBarManager().showError(message: failure.message),
             }, (loggedUser) {
-      if (loggedUser != null) {
-        AppRouter.navigatorKey.currentState?.pushNamed(AppRouter.HOME);
-      } else {
-        print('AUTH-STORE -> ENCONTROU O USUARIO: ENVIAR PARA HOME');
-        AppRouter.navigatorKey.currentState?.pushNamed(AppRouter.SPLASH);
-        //return loggedUser;
-      }
+      AppRouter.navigatorKey.currentState?.pushNamed(AppRouter.HOME);
+
+      print('AUTH-STORE -> ENCONTROU O USUARIO: ENVIAR PARA HOME');
+      AppRouter.navigatorKey.currentState?.pushNamed(AppRouter.HOME);
+      //return loggedUser;
     });
   }
 }

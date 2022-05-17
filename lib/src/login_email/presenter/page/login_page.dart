@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:todo_paraguay/shared/validators/validators.dart';
 import 'package:todo_paraguay/shared/widgets/button_widget.dart';
 import 'package:todo_paraguay/shared/widgets/input_text_widget.dart';
 import 'package:todo_paraguay/src/login_email/presenter/store/auth_store_controller.dart';
@@ -37,50 +36,47 @@ class _LoginPageAuthState extends State<LoginPageAuth> {
         child: SizedBox(
           height: size.height,
           width: size.width,
-          child: Form(
-            key: widget.authStore.formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // SizedBox(
-                //   height: 110,
-                //   child: Image.asset('assets/images/sb_logo.png'),
-                // ),
-                const SizedBox(
-                  height: 50,
-                ),
-                InputTextWidget(
-                  label: 'email',
-                  controller: _emailController,
-                  //validator: ValidatorHelper.validaString,
-                  obscureText: false,
-                  enabled: true,
-                  minLines: 1,
-                  maxLines: 1,
-                ),
-                InputTextWidget(
-                  label: 'senha',
-                  controller: _passwordController,
-                  //validator: ValidatorHelper.validaString,
-                  obscureText: true,
-                  enabled: true,
-                  minLines: 1,
-                  maxLines: 1,
-                ),
-                ButtonWidget(
-                  label: 'Entrar',
-                  onPressed: () {
-                    widget.authStore.checkLogin(
-                      email: _emailController.text,
-                      password: _passwordController.text,
-                    );
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // SizedBox(
+              //   height: 110,
+              //   child: Image.asset('assets/images/sb_logo.png'),
+              // ),
+              const SizedBox(
+                height: 50,
+              ),
+              InputTextWidget(
+                label: 'email',
+                controller: _emailController,
+                //validator: ValidatorHelper.validaString,
+                obscureText: false,
+                enabled: true,
+                minLines: 1,
+                maxLines: 1,
+              ),
+              InputTextWidget(
+                label: 'senha',
+                controller: _passwordController,
+                //validator: ValidatorHelper.validaString,
+                obscureText: true,
+                enabled: true,
+                minLines: 1,
+                maxLines: 1,
+              ),
+              ButtonWidget(
+                label: 'Entrar',
+                onPressed: () {
+                  widget.authStore.checkLogin(
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                  );
 
-                    //_emailController.clear();
-                    //_passwordController.clear();
-                  },
-                ),
-              ],
-            ),
+                  //_emailController.clear();
+                  //_passwordController.clear();
+                },
+              ),
+            ],
           ),
         ),
       ),

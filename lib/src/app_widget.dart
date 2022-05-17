@@ -15,6 +15,7 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //key: AppGlobalKey.materialKey,
       navigatorKey: AppRouter.navigatorKey,
       scaffoldMessengerKey: SnackBarManager.snackKey,
       debugShowCheckedModeBanner: false,

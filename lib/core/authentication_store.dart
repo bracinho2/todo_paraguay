@@ -15,18 +15,18 @@ class AuthenticationImpl implements IAuthentication {
   Future<bool> checkLogin() async {
     var isLogged;
 
-    _firebaseAuth.authStateChanges().listen((User? user) {
-      loggedUser = (user == null) ? null : user;
+    // _firebaseAuth.authStateChanges().listen((User? user) {
+    //   loggedUser = (user == null) ? null : user;
 
-      if (loggedUser == null) {
-        print('AUTH STORE INFORM -> Usuário não está logado!');
-        isLogged = false;
-      } else {
-        print('AUTH STORE INFORM -> ' + user.toString());
-        isLogged = true;
-        print(isLogged);
-      }
-    });
+    //   if (loggedUser == null) {
+    //     print('AUTH STORE INFORM -> Usuário não está logado!');
+    //     isLogged = false;
+    //   } else {
+    //     print('AUTH STORE INFORM -> ' + user.toString());
+    //     isLogged = true;
+    //     print(isLogged);
+    //   }
+    // });
 
     return isLogged;
   }
@@ -41,7 +41,7 @@ class AuthenticationImpl implements IAuthentication {
   Future<bool> currentUser() async {
     var result = _firebaseAuth.currentUser;
     if (result == null) {
-      print('AUTH STORE INFORM -> ' 'Não exite usuário logado!');
+      print('AUTH STORE INFORM -> ' 'Não existe usuário logado!');
       return false;
     } else {
       loggedUser = result;

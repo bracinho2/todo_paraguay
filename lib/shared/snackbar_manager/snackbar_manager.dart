@@ -44,6 +44,7 @@ class SnackBarManager {
         ],
       ),
     );
+
     snackKey.currentState?.showSnackBar(snackBar);
   }
 
