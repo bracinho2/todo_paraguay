@@ -30,7 +30,7 @@ class LoginStore {
 
       print('AUTH-STORE -> ENCONTROU O USUARIO: ENVIAR PARA HOME');
       AppRouter.navigatorKey.currentState?.pushNamed(AppRouter.HOME);
-      _iAuthentication.setUser(loggedUser as User);
+      _iAuthentication.setUser(loggedUser);
     });
   }
 }

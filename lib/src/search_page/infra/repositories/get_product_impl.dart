@@ -11,15 +11,6 @@ class ProductRepositoryImpl implements IProductRepository {
   Future<List<ProductEntity>> getProducts() async {
     final response = await _iProductDatasource.getProducts();
 
-    //response.map(ProductMapper.fromMap);
-
-    // final List<ProductEntity> list = [];
-
-    // for (var object in response) {
-    //   final product = ProductMapper.fromMap(object);
-    //   list.add(product);
-    // }
-
     return response.map(ProductMapper.fromMap).toList();
   }
 }
