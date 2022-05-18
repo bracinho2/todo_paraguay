@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo_paraguay/core/app_router.dart';
 import 'package:todo_paraguay/core/authentication_store.dart';
 import 'package:todo_paraguay/shared/snackbar_manager/snackbar_manager.dart';
