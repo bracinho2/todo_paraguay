@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_paraguay/core/authentication_store.dart';
 import 'package:todo_paraguay/src/login_email/domain/repositories/login_repository_interface.dart';
 import 'package:todo_paraguay/src/login_email/domain/services/connectivity_service_interface.dart';
 import 'package:todo_paraguay/src/login_email/domain/usecases/login_with_email.dart';
@@ -43,5 +44,6 @@ final authInjection = [
 
   //STORE
   Provider<LoginStore>(
-      create: (context) => LoginStore(context.read<IloginWithEmail>())),
+      create: (context) => LoginStore(
+          context.read<IAuthentication>(), context.read<IloginWithEmail>())),
 ];

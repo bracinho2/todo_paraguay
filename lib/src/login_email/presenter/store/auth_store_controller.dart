@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo_paraguay/core/app_router.dart';
+import 'package:todo_paraguay/core/authentication_store.dart';
 import 'package:todo_paraguay/shared/snackbar_manager/snackbar_manager.dart';
 import 'package:todo_paraguay/src/login_email/domain/credencial_params.dart';
 import 'package:todo_paraguay/src/login_email/domain/usecases/login_with_email.dart';
 
 class LoginStore {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
+  final IAuthentication _iAuthentication;
   final IloginWithEmail _iloginWithEmail;
 
-  LoginStore(this._iloginWithEmail);
+  LoginStore(this._iAuthentication, this._iloginWithEmail);
 
   Future<void> checkLogin({
     required String password,
@@ -30,7 +30,7 @@ class LoginStore {
 
       print('AUTH-STORE -> ENCONTROU O USUARIO: ENVIAR PARA HOME');
       AppRouter.navigatorKey.currentState?.pushNamed(AppRouter.HOME);
-      //return loggedUser;
+      _iAuthentication.setUser(loggedUser as User);
     });
   }
 }

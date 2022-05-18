@@ -26,13 +26,13 @@ class AppWidget extends StatelessWidget {
       initialRoute: '/',
       routes: {
         AppRouter.SPLASH: (_) =>
-            SplashPage(authStore: context.read<AuthenticationImpl>()),
+            SplashPage(authStore: context.read<IAuthentication>()),
         AppRouter.LOGIN: (context) => LoginPageAuth(
               authStore: context.read<LoginStore>(),
             ),
         AppRouter.HOME: (context) => ProductHomePageBloc(
             bloc: context.read<ProductBloc>(),
-            auth: context.read<AuthenticationImpl>()),
+            auth: context.read<IAuthentication>()),
       },
     );
   }

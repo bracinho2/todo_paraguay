@@ -19,7 +19,7 @@ void main() async {
       providers: [
         Provider<FirebaseAuth>(
             create: (_) => FirebaseAuth.instance, lazy: true),
-        Provider<AuthenticationImpl>(
+        Provider<IAuthentication>(
             create: (context) =>
                 AuthenticationImpl(context.read<FirebaseAuth>())),
         ...authInjection,

@@ -1,10 +1,8 @@
-abstract class AppHardDebug {
-  printError({required String message});
-}
+import 'package:firebase_auth/firebase_auth.dart';
 
-class SplashMessage implements AppHardDebug {
-  @override
-  printError({required String message}) {
-    print(message);
+class HardDebug {
+  void loggedUserInfo(User? user) {
+    print(
+        '<--Logged User:--->\n\n${user?.email}\n${user?.displayName}\n\n<---End--->');
   }
 }

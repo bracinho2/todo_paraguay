@@ -17,7 +17,7 @@ import 'package:todo_paraguay/src/search_page/presenter_bloc/page/widgets/search
 
 class ProductHomePageBloc extends StatefulWidget {
   final ProductBloc bloc;
-  final AuthenticationImpl auth;
+  final IAuthentication auth;
   const ProductHomePageBloc({
     Key? key,
     required this.bloc,
