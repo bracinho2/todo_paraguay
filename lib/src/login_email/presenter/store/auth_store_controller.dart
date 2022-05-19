@@ -7,8 +7,10 @@ import 'package:todo_paraguay/src/login_email/domain/usecases/login_with_email.d
 class LoginStore {
   final IAuthentication _iAuthentication;
   final IloginWithEmail _iloginWithEmail;
+  final SnackBarManager _snackBarManager;
 
-  LoginStore(this._iAuthentication, this._iloginWithEmail);
+  LoginStore(
+      this._iAuthentication, this._iloginWithEmail, this._snackBarManager);
 
   Future<void> checkLogin({
     required String password,
@@ -23,11 +25,10 @@ class LoginStore {
 
     result.fold(
         (failure) => {
-              SnackBarManager().showError(message: failure.message),
+              _snackBarManager.showError(message: failure.message),
             }, (loggedUser) {
       AppRouter.navigatorKey.currentState?.pushNamed(AppRouter.HOME);
 
-      print('AUTH-STORE -> ENCONTROU O USUARIO: ENVIAR PARA HOME');
       AppRouter.navigatorKey.currentState?.pushNamed(AppRouter.HOME);
       _iAuthentication.setUser(loggedUser);
     });
