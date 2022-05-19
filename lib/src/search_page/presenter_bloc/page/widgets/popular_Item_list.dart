@@ -1,4 +1,3 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:todo_paraguay/shared/themes/text_styles.dart';
 import 'package:todo_paraguay/src/search_page/presenter_bloc/page/product_detail_page_bloc.dart';
