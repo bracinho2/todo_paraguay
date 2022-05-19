@@ -1,8 +1,6 @@
-import 'package:image_picker/image_picker.dart';
-
 class PickedImage {
-  final XFile image;
-  final List<XFile>? images;
+  final String imageName;
+  final String imagePath;
 
-  PickedImage(this.image, this.images);
+  PickedImage(this.imageName, this.imagePath);
 }

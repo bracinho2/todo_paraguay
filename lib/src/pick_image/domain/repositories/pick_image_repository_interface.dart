@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:todo_paraguay/src/pick_image/domain/entitity/image_entity.dart';
 import 'package:todo_paraguay/src/pick_image/domain/errors/errors.dart';
 
 abstract class IPIckimageRepository {
-  Future<Either<PickImageFailure, XFile>> pickImage(
+  Future<Either<PickImageFailure, Future<List<PickedImage>>>> getImages(
       {required bool loadingCamera});
 }
