@@ -33,7 +33,7 @@ class _SplashPageState extends State<SplashPage> {
       print('SPLASH -> LOGIN PAGE;');
       return;
     }
-    Navigator.pushReplacementNamed(context, AppRouter.HOME);
+    Navigator.pushReplacementNamed(context, AppRouter.CAMERA);
     print('SPLASH -> HOME PAGE;');
   }
 

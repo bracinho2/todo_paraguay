@@ -4,15 +4,15 @@ import 'package:todo_paraguay/src/pick_image/domain/errors/errors.dart';
 import 'package:todo_paraguay/src/pick_image/domain/repositories/pick_image_repository_interface.dart';
 
 abstract class IPickImageWithCamera {
-  Future<Either<PickImageFailure, Future<List<PickedImage>>>> call();
+  Future<Either<PickImageFailure, List<PickedImage>>> call();
 }
 
-class PIckImageWithCameraUseCase implements IPickImageWithCamera {
-  final IPIckimageRepository _pickImageRepository;
+class PickImageWithCameraUseCase implements IPickImageWithCamera {
+  final IPickedImageRepository _pickImageRepository;
 
-  PIckImageWithCameraUseCase(this._pickImageRepository);
+  PickImageWithCameraUseCase(this._pickImageRepository);
   @override
-  Future<Either<PickImageFailure, Future<List<PickedImage>>>> call() async {
+  Future<Either<PickImageFailure, List<PickedImage>>> call() async {
     return _pickImageRepository.getImages(loadingCamera: true);
   }
 }
