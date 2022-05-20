@@ -11,7 +11,7 @@ class PickImageStore {
   PickImageStore(this._snackBarManager, this._iPickImageWithCamera,
       this._iPickImageFromGallery);
 
-  final listImages = [];
+  List<PickedImage> listImages = [];
 
   Future<List<PickedImage>> pickImageWithCamera() async {
     var result = await _iPickImageWithCamera.call();
@@ -20,16 +20,19 @@ class PickImageStore {
         (failure) => {
               _snackBarManager.showError(message: failure.message),
             }, (pickedImages) {
-      pickedImages.map((images) => images);
+      listImages = pickedImages;
     });
-    return [];
+    return listImages;
   }
 
-  Future<void> pickImageFromGallery() async {
+  Future<List<PickedImage>> pickImageFromGallery() async {
     var result = await _iPickImageFromGallery.call();
-    result.fold(
-        (failure) => _snackBarManager.showError(message: failure.message),
-        (pickedImages) =>
-            pickedImages.map((images) => print(images.imagePath)).toList());
+    result
+        .fold((failure) => _snackBarManager.showError(message: failure.message),
+            (pickedImages) {
+      listImages = pickedImages;
+    });
+
+    return listImages;
   }
 }
