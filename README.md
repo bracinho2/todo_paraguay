@@ -20,6 +20,8 @@ Buque lo que necessitas en tu mano
 
 ## funcionalidades em progresso:
 - cadastro de fotos;
+    - Implementada a função de Abertura de camera para registro de foto;
+    - Implementada a função de Seleção de fotos a partir da galeria;
 - compartilhamento de item via whatsapp;
 
 ## Sugestões?
