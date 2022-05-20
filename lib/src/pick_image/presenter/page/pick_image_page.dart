@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:todo_paraguay/shared/snackbar_manager/snackbar_manager.dart';
 import 'package:todo_paraguay/shared/widgets/bottombar_widget.dart';
+import 'package:todo_paraguay/src/pick_image/domain/entitity/image_entity.dart';
 import 'package:todo_paraguay/src/pick_image/domain/usecases/pick_Image_with_camera.dart';
 import 'package:todo_paraguay/src/pick_image/domain/usecases/pick_image_from_gallery.dart';
 import 'package:todo_paraguay/src/pick_image/external/image_picker_impl.dart';
 import 'package:todo_paraguay/src/pick_image/infra/repositories/pick_image_repositories_impl.dart';
 import 'package:todo_paraguay/src/pick_image/presenter/store/pick_image_store.dart';
+import 'package:todo_paraguay/src/search_page/presenter_bloc/page/widgets/popular_Item_list.dart';
 
 class Camera extends StatefulWidget {
   const Camera({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class Camera extends StatefulWidget {
 }
 
 class _CameraState extends State<Camera> {
+  List<PickedImage>? imageList;
   final pickImages = PickImageStore(
     SnackBarManager(),
     PickImageWithCameraUseCase(
@@ -36,8 +39,8 @@ class _CameraState extends State<Camera> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ElevatedButton.icon(
-                    onPressed: () {
-                      pickImages.pickImageWithCamera();
+                    onPressed: () async {
+                      imageList = await pickImages.pickImageWithCamera();
                     },
                     icon: const Icon(Icons.camera_alt),
                     label: const Padding(
