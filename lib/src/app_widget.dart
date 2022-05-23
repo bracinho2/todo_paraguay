@@ -5,7 +5,7 @@ import 'package:todo_paraguay/core/app_router.dart';
 import 'package:todo_paraguay/shared/snackbar_manager/snackbar_manager.dart';
 import 'package:todo_paraguay/src/login_email/presenter/page/login_page.dart';
 import 'package:todo_paraguay/src/login_email/presenter/store/auth_store_controller.dart';
-import 'package:todo_paraguay/src/pick_image/presenter/page/pick_image_page.dart';
+import 'package:todo_paraguay/src/pick_image/presenter_bloc/page/pick_image_page.dart';
 import 'package:todo_paraguay/src/search_page/presenter_bloc/bloc/product_bloc.dart';
 import 'package:todo_paraguay/src/search_page/presenter_bloc/page/product_home_page_bloc.dart';
 import 'package:todo_paraguay/src/splash/splash_page.dart';
@@ -25,6 +25,7 @@ class AppWidget extends StatelessWidget {
         highlightColor: Colors.transparent,
       ),
       initialRoute: '/',
+
       routes: {
         AppRouter.SPLASH: (_) =>
             SplashPage(authStore: context.read<IAuthentication>()),
