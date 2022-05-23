@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:todo_paraguay/shared/snackbar_manager/snackbar_manager.dart';
+import 'package:todo_paraguay/shared/widgets/bottombar_widget.dart';
 import 'package:todo_paraguay/src/pick_image/domain/entitity/image_entity.dart';
 import 'package:todo_paraguay/src/pick_image/domain/usecases/pick_Image_with_camera.dart';
 import 'package:todo_paraguay/src/pick_image/domain/usecases/pick_image_from_gallery.dart';
 import 'package:todo_paraguay/src/pick_image/external/image_picker_impl.dart';
 import 'package:todo_paraguay/src/pick_image/infra/repositories/pick_image_repositories_impl.dart';
-import 'package:todo_paraguay/src/pick_image/presenter/store/pick_image_store.dart';
-import 'package:todo_paraguay/src/search_page/presenter_bloc/page/widgets/new_item_list.dart';
+import 'package:todo_paraguay/src/pick_image/presenter_bloc/store/pick_image_store.dart';
 
 class Camera extends StatefulWidget {
   const Camera({Key? key}) : super(key: key);
@@ -85,7 +85,7 @@ class _CameraState extends State<Camera> {
                   ElevatedButton.icon(
                     onPressed: () async {
                       imageList = await pickImages.pickImageWithCamera();
-                      setState(() {});
+                      //setState(() {});
                     },
                     icon: const Icon(Icons.camera_alt),
                     label: const Padding(
@@ -108,13 +108,18 @@ class _CameraState extends State<Camera> {
                     onPressed: () async {
                       imageList = await pickImages.pickImageFromGallery();
                       print(imageList.length);
-                      setState(() {});
+                      //setState(() {});
                     },
                   ),
                 ],
               ),
             ],
           ),
+        ),
+        bottomNavigationBar: BottonBarWidget(
+          exit: () {
+            print('Exit');
+          },
         ),
       ),
     );
