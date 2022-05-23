@@ -9,7 +9,7 @@ Buque lo que necessitas en tu mano
 - Descrição detalhada do item;
 - Possibilidade de votar em um item;
 
-## elementos implementadas:
+## elementos implementados:
 - Apresentação dos itens;
 - Busca por itens;
 - Apresentação em três categorias;
