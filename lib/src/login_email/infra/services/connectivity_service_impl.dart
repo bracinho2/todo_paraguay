@@ -12,12 +12,15 @@ class ConnectivityServiceImpl implements IConnectivityService {
   Future<Either<Failure, Unit>> isOnline() async {
     try {
       var check = await _iConennectivityDriver.isOnline;
+      print(check);
       if (check) {
         return const Right(unit);
       }
       throw ConnectionError(message: 'Você está offline');
     } on Failure catch (error) {
-      return left(ConnectionError(message: error.toString()));
+      print(error.message);
+      return left(
+          ConnectionError(message: 'Conecte-se à Internet para entrar.'));
     }
   }
 }
