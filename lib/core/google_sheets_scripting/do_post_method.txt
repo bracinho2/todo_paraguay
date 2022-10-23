@@ -1,0 +1,23 @@
+function doPost(request){
+  // Open Google Sheet using ID
+  var sheet = SpreadsheetApp.openById("19Iry4HWZU-L1xZ9BKcuWdG3VpXt9u2Io_MFKB_R2Gss");
+  var result = {"status": "SUCCESS"};
+  try{
+    // Get all Parameters
+    var name = request.parameter.name
+    var description = request.parameter.description;
+  
+
+    // Append data on Google Sheet
+    var rowData = sheet.appendRow([name, description]);
+
+  } catch(exc){
+    // If error occurs, throw exception
+    result = {"status": "FAILED", "message": exc};
+  }
+
+  // Return result
+  return ContentService
+  .createTextOutput(JSON.stringify(result))
+  .setMimeType(ContentService.MimeType.JSON);
+}
